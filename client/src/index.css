@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 100% 100%;
+    --foreground: 338 15% 15%;
+    
+    --card: 0 100% 100%;
+    --card-foreground: 338 15% 15%;
+    
+    --popover: 0 100% 100%;
+    --popover-foreground: 338 15% 15%;
+    
+    --primary: 338 78% 65%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 338 100% 97%;
+    --secondary-foreground: 338 78% 65%;
+    
+    --muted: 338 25% 96%;
+    --muted-foreground: 338 20% 45%;
+    
+    --accent: 338 100% 97%;
+    --accent-foreground: 338 15% 15%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 338 30% 92%;
+    --input: 338 30% 92%;
+    --ring: 338 78% 65%;
+    
+    --radius: 0.7rem;
+
+    --chart-1: 338 78% 65%;
+    --chart-2: 0 84.2% 60.2%;
+    --chart-3: 25 95% 53%;
+    --chart-4: 312 83% 58%;
+    --chart-5: 170 65% 38%;
+  }
+ 
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-image: linear-gradient(to bottom right, rgba(255, 240, 245, 0.4), rgba(255, 255, 255, 1));
+    min-height: 100vh;
+  }
+
+  .font-heading {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .calendar-day.period {
+    background-color: hsl(338 78% 65%);
+    color: white;
+  }
+  
+  .calendar-day.ovulation {
+    background-color: hsl(258 70% 70%);
+    color: white;
+  }
+  
+  .calendar-day.today {
+    border: 2px solid hsl(338 78% 65%);
+  }
+
+  .auth-container {
+    box-shadow: 0 10px 25px rgba(252, 182, 203, 0.2);
+    border-radius: var(--radius);
+    border: 1px solid rgba(252, 182, 203, 0.3);
+  }
+}
