@@ -61,10 +61,10 @@ app.use((req, res, next) => {
   // It is the only port that is not firewalled.
   const port = 5000;
   server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  port,
+  host: "localhost",
+  // reusePort: true, // Comment this out for Windows compatibility
+}, () => {
+  log(`serving on port ${port}`);
+});
 })();
