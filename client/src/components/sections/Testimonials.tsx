@@ -11,7 +11,7 @@ const Testimonials = () => {
       text: "Sakhi has transformed how I understand my body. The period tracker is incredibly accurate, and the educational resources have taught me so much about my reproductive health."
     },
     {
-      name: "Anjali Deshmukh", 
+      name: "Anjali Deshmukh",
       location: "Bangalore",
       avatar: "AD",
       rating: 5,
@@ -19,7 +19,7 @@ const Testimonials = () => {
     },
     {
       name: "Sunita Mehta",
-      location: "Delhi", 
+      location: "Delhi",
       avatar: "SM",
       rating: 5,
       text: "The community support on Sakhi helped me through a difficult pregnancy. I found information and emotional support that wasn't available anywhere else. Truly grateful."
@@ -28,19 +28,30 @@ const Testimonials = () => {
 
   return (
     <section className="py-16 bg-gray-50 relative overflow-hidden">
-      {/* Diverse women illustration background */}
+      {/* Women illustration background (existing code) */}
       <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-gray-100 to-gray-50">
-        <div className="w-full h-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cdefs%3E%3Cstyle%3E.woman%7Bfill:%23ff8fab;%7D.hair1%7Bfill:%23654321;%7D.hair2%7Bfill:%23f4c2a1;%7D.hair3%7Bfill:%232c1810;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Ccircle class='woman' cx='100' cy='120' r='40'/%3E%3Ccircle class='hair1' cx='100' cy='100' r='25'/%3E%3Ccircle class='woman' cx='200' cy='130' r='35'/%3E%3Ccircle class='hair2' cx='200' cy='115' r='20'/%3E%3Ccircle class='woman' cx='300' cy='125' r='38'/%3E%3Ccircle class='hair3' cx='300' cy='105' r='23'/%3E%3Ccircle class='woman' cx='400' cy='135' r='36'/%3E%3Ccircle class='hair1' cx='400' cy='120' r='21'/%3E%3Ccircle class='woman' cx='500' cy='120' r='40'/%3E%3Ccircle class='hair2' cx='500' cy='100' r='25'/%3E%3Ccircle class='woman' cx='600' cy='130' r='35'/%3E%3Ccircle class='hair3' cx='600' cy='115' r='20'/%3E%3Ccircle class='woman' cx='700' cy='125' r='38'/%3E%3Ccircle class='hair1' cx='700' cy='105' r='23'/%3E%3Ccircle class='woman' cx='800' cy='135' r='36'/%3E%3Ccircle class='hair2' cx='800' cy='120' r='21'/%3E%3Ccircle class='woman' cx='900' cy='120' r='40'/%3E%3Ccircle class='hair3' cx='900' cy='100' r='25'/%3E%3Ccircle class='woman' cx='1000' cy='130' r='35'/%3E%3Ccircle class='hair1' cx='1000' cy='115' r='20'/%3E%3Ccircle class='woman' cx='1100' cy='125' r='38'/%3E%3Ccircle class='hair2' cx='1100' cy='105' r='23'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat-x',
-          backgroundPosition: 'bottom',
-          opacity: 0.3
-        }}>
-        </div>
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cdefs%3E%3Cstyle%3E.woman%7Bfill:%23ff8fab;%7D.hair1%7Bfill:%23654321;%7D.hair2%7Bfill:%23f4c2a1;%7D.hair3%7Bfill:%232c1810;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Ccircle class='woman' cx='100' cy='120' r='40'/%3E%3Ccircle class='hair1' cx='100' cy='100' r='25'/%3E%3Ccircle class='woman' cx='200' cy='130' r='35'/%3E%3Ccircle class='hair2' cx='200' cy='115' r='20'/%3E%3Ccircle class='woman' cx='300' cy='125' r='38'/%3E%3Ccircle class='hair3' cx='300' cy='105' r='23'/%3E%3Ccircle class='woman' cx='400' cy='135' r='36'/%3E%3Ccircle class='hair1' cx='400' cy='120' r='21'/%3E%3Ccircle class='woman' cx='500' cy='120' r='40'/%3E%3Ccircle class='hair2' cx='500' cy='100' r='25'/%3E%3Ccircle class='woman' cx='600' cy='130' r='35'/%3E%3Ccircle class='hair3' cx='600' cy='115' r='20'/%3E%3Ccircle class='woman' cx='700' cy='125' r='38'/%3E%3Ccircle class='hair1' cx='700' cy='105' r='23'/%3E%3Ccircle class='woman' cx='800' cy='135' r='36'/%3E%3Ccircle class='hair2' cx='800' cy='120' r='21'/%3E%3Ccircle class='woman' cx='900' cy='120' r='40'/%3E%3Ccircle class='hair3' cx='900' cy='100' r='25'/%3E%3Ccircle class='woman' cx='1000' cy='130' r='35'/%3E%3Ccircle class='hair1' cx='1000' cy='115' r='20'/%3E%3Ccircle class='woman' cx='1100' cy='125' r='38'/%3E%3Ccircle class='hair2' cx='1100' cy='105' r='23'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'bottom',
+            opacity: 0.3
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12 pt-20">
+        {/* Inserted Image */}
+        <div className="mb-12">
+          <img
+            src="https://i.ibb.co/nqSWpmBK/Whats-App-Image-2025-06-07-at-12-41-26-0d008c3b.jpg"
+            alt="Women Collage"
+            className="w-full h-auto rounded-lg shadow-md"
+          />
+        </div>
+
+        <div className="text-center mb-12">
           <p className="text-pink-500 font-medium text-sm uppercase tracking-wide mb-2">
             TESTIMONIALS
           </p>
