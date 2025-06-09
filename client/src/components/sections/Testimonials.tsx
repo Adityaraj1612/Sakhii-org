@@ -28,7 +28,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-16 bg-gray-50 relative overflow-hidden">
-      {/* Women illustration background (existing code) */}
+      {/* Diverse women illustration background (existing code) */}
       <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-gray-100 to-gray-50">
         <div
           className="w-full h-full"
@@ -42,12 +42,12 @@ const Testimonials = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Inserted Image */}
-        <div className="mb-12">
+        {/* Inserted Image with max height and object-fit */}
+        <div className="mb-8 flex justify-center">
           <img
             src="https://i.ibb.co/pjbbnfjT/margin-wrap.png"
             alt="margin-wrap"
-            className="w-full h-auto rounded-lg shadow-md"
+            className="w-full max-w-5xl h-48 object-cover rounded-lg shadow-md"
           />
         </div>
 
@@ -65,11 +65,17 @@ const Testimonials = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border border-gray-100 hover:shadow-lg transition-shadow duration-300 bg-white">
+            <Card
+              key={index}
+              className="border border-gray-100 hover:shadow-lg transition-shadow duration-300 bg-white"
+            >
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-pink-500 text-pink-500" />
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-pink-500 text-pink-500"
+                    />
                   ))}
                 </div>
                 <p className="text-gray-600 mb-4 italic">
@@ -80,8 +86,12 @@ const Testimonials = () => {
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-800">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500">{testimonial.location}</p>
+                    <p className="font-semibold text-gray-800">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      {testimonial.location}
+                    </p>
                   </div>
                 </div>
               </CardContent>
