@@ -45,8 +45,8 @@ const Testimonials = () => {
         {/* Inserted Image */}
         <div className="mb-12">
           <img
-            src="https://i.ibb.co/nqSWpmBK/Whats-App-Image-2025-06-07-at-12-41-26-0d008c3b.jpg"
-            alt="Women Collage"
+            src="https://i.ibb.co/pjbbnfjT/margin-wrap.png"
+            alt="margin-wrap"
             className="w-full h-auto rounded-lg shadow-md"
           />
         </div>
