@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-xl mb-4 flex items-center">
               <Heart className="mr-2 h-5 w-5" />
-              Sakhi
+              Sakhii
             </h3>
             <p className="text-purple-100 mb-4">
               Your trusted companion for women's health and wellness journey.
@@ -68,15 +68,15 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mt-1 mr-2 flex-shrink-0" />
-                <span>123 Health Street, Medical District, City</span>
+                <span>Chandigarh University</span>
               </li>
               <li className="flex items-start">
                 <Phone className="h-5 w-5 mt-1 mr-2 flex-shrink-0" />
-                <span>+1 (123) 456-7890</span>
+                <span>+91 9027704514, 9661265525</span>
               </li>
               <li className="flex items-start">
                 <Mail className="h-5 w-5 mt-1 mr-2 flex-shrink-0" />
-                <span>contact@sakhi.com</span>
+                <span>sakhiindiafoundation@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -103,7 +103,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-white border-opacity-20 mt-8 pt-8 text-center text-purple-100">
-          <p>&copy; {new Date().getFullYear()} Sakhi. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Sakhii. All rights reserved.</p>
           <div className="mt-2 space-x-4">
             <Link href="/privacy">
               <a className="text-purple-100 hover:text-white text-sm">Privacy Policy</a>
