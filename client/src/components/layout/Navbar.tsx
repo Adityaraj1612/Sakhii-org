@@ -181,16 +181,7 @@ const Navbar = () => {
                 <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
               </Link>
             </li>
-            <li className="pt-2 border-t">
-              <Link 
-                href="/sign-in" 
-                onClick={() => setIsMenuOpen(false)}
-                className="text-primary font-medium block py-1"
-              >
-                {t('navbar.signIn')}
-              </Link>
-            </li>
-            <li>
+             <li>
   <a
     href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k"
     target="_blank"
@@ -202,6 +193,16 @@ const Navbar = () => {
   </a>
 </li>
 
+            <li className="pt-2 border-t">
+              <Link 
+                href="/sign-in" 
+                onClick={() => setIsMenuOpen(false)}
+                className="text-primary font-medium block py-1"
+              >
+                {t('navbar.signIn')}
+              </Link>
+            </li>
+  
             <li>
               <Link 
                 href="/sign-up" 
