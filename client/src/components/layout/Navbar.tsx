@@ -29,7 +29,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/doctors"
-                className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary`}
+                className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 {t('navbar.doctors')}
               </Link>
@@ -37,7 +37,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/education"
-                className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary`}
+                className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 {t('navbar.education')}
               </Link>
@@ -45,7 +45,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/library"
-                className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'} hover:text-primary`}
+                className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 {t('navbar.library')}
               </Link>
@@ -53,7 +53,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/community"
-                className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary`}
+                className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 {t('navbar.community')}
               </Link>
@@ -61,7 +61,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/contact"
-                className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'} hover:text-primary`}
+                className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 {t('navbar.contact')}
               </Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/tracker"
-                className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary flex items-center`}
+                className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 <Heart className="mr-1 h-4 w-4 text-rose-500" /> Health Tracker
               </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
             <li>
               <Link 
                 href="/games"
-                className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary flex items-center`}
+                className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
               >
                 <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
               </Link>
