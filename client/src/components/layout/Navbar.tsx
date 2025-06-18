@@ -122,7 +122,7 @@ const Navbar = () => {
               <Link 
                 href="/doctors" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1`}
+                className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
               >
                 {t('navbar.doctors')}
               </Link>
@@ -131,7 +131,7 @@ const Navbar = () => {
               <Link 
                 href="/education" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1`}
+                className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
               >
                 {t('navbar.education')}
               </Link>
@@ -140,7 +140,7 @@ const Navbar = () => {
               <Link 
                 href="/library" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1`}
+                className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'}hover:text-primary font-semibold block py-1`}
               >
                 {t('navbar.library')}
               </Link>
@@ -149,7 +149,7 @@ const Navbar = () => {
               <Link 
                 href="/community" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1`}
+                className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
               >
                 {t('navbar.community')}
               </Link>
@@ -158,7 +158,7 @@ const Navbar = () => {
               <Link 
                 href="/contact" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1`}
+                className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'}hover:text-primary font-semibold block py-1`}
               >
                 {t('navbar.contact')}
               </Link>
@@ -167,7 +167,7 @@ const Navbar = () => {
               <Link 
                 href="/tracker" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1 flex items-center`}
+                className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
               >
                 <Heart className="mr-1 h-4 w-4 text-rose-500" /> Health Tracker
               </Link>
@@ -176,7 +176,7 @@ const Navbar = () => {
               <Link 
                 href="/games" 
                 onClick={() => setIsMenuOpen(false)}
-                className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary block py-1 flex items-center`}
+                className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
               >
                 <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
               </Link>
@@ -204,6 +204,18 @@ const Navbar = () => {
                 <LanguageSelector />
               </div>
             </li>
+            <li>
+  <a
+    href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="secondary" className="w-full mt-2 bg-rose-500 text-white hover:bg-rose-600 font-semibold">
+      Saathi
+    </Button>
+  </a>
+</li>
+
           </ul>
         </div>
       )}
