@@ -191,6 +191,18 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
+  <a
+    href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="secondary" className="w-full mt-2 bg-rose-500 text-white hover:bg-rose-600 font-semibold">
+      Saathi
+    </Button>
+  </a>
+</li>
+
+            <li>
               <Link 
                 href="/sign-up" 
                 onClick={() => setIsMenuOpen(false)}
@@ -204,18 +216,7 @@ const Navbar = () => {
                 <LanguageSelector />
               </div>
             </li>
-            <li>
-  <a
-    href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <Button variant="secondary" className="w-full mt-2 bg-rose-500 text-white hover:bg-rose-600 font-semibold">
-      Saathi
-    </Button>
-  </a>
-</li>
-
+            
           </ul>
         </div>
       )}
