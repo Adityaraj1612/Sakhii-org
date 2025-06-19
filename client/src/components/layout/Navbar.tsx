@@ -16,103 +16,61 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-red-500 shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/">
-          <div className="flex items-center cursor-pointer">
-            <Logo size="sm" />
-          </div>
-        </Link>
+   <header className="bg-white shadow-sm sticky top-0 z-50">
+  <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    {/* Logo */}
+    <Link href="/">
+      <div className="flex items-center cursor-pointer">
+        <Logo size="sm" />
+      </div>
+    </Link>
 
-        <nav className="hidden md:block">
-          <ul className="flex space-x-6">
-            <li>
-              <Link 
-                href="/doctors"
-                className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                {t('navbar.doctors')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/education"
-                className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                {t('navbar.education')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/library"
-                className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                {t('navbar.library')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/community"
-                className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                {t('navbar.community')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/contact"
-                className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                {t('navbar.contact')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/tracker"
-                className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                <Heart className="mr-1 h-4 w-4 text-rose-500" /> Health Tracker
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/games"
-                className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold`}
-              >
-                <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
-              </Link>
-            </li>
-            <li>
-              <a 
-                href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button variant="secondary" className="bg-rose-500 text-white hover:bg-rose-600">
-                  Saathi
-                </Button>
-              </a>
-            </li>
-          </ul>
-        </nav>
+    {/* Navigation Links */}
+    <nav className="hidden md:flex items-center space-x-6">
+      <Link href="/doctors" className={`${location === '/doctors' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+        {t('navbar.doctors')}
+      </Link>
+      <Link href="/education" className={`${location === '/education' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+        {t('navbar.education')}
+      </Link>
+      <Link href="/library" className={`${location === '/library' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+        {t('navbar.library')}
+      </Link>
+      <Link href="/community" className={`${location === '/community' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+        {t('navbar.community')}
+      </Link>
+      <Link href="/contact" className={`${location === '/contact' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+        {t('navbar.contact')}
+      </Link>
+      <Link href="/tracker" className={`${location === '/tracker' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+        <Heart className="mr-1 h-4 w-4 text-rose-500" /> Health Tracker
+      </Link>
+      <Link href="/games" className={`${location === '/games' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+        <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
+      </Link>
+      <a href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k" target="_blank" rel="noopener noreferrer">
+        <Button variant="secondary" className="bg-rose-500 text-white hover:bg-rose-600">Saathi</Button>
+      </a>
+    </nav>
 
-        <div className="flex items-center space-x-3">
-          <LanguageSelector variant="navbar" />
-          <Link href="/sign-in">
-            <Button variant="default" size="sm">
-              {t('navbar.signIn')}
-            </Button>
-          </Link>
-          <Link href="/sign-up">
-            <Button variant="outline" size="sm">
-              {t('navbar.signUp')}
-            </Button>
-          </Link>
-          <button className="md:hidden text-neutral-800" onClick={toggleMenu}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-      </div>
+    {/* Right Buttons */}
+    <div className="hidden md:flex items-center space-x-3">
+      <LanguageSelector variant="navbar" />
+      <Link href="/sign-in">
+        <Button variant="default" size="sm">{t('navbar.signIn')}</Button>
+      </Link>
+      <Link href="/sign-up">
+        <Button variant="outline" size="sm">{t('navbar.signUp')}</Button>
+      </Link>
+    </div>
+
+    {/* Mobile Toggle */}
+    <button className="md:hidden text-neutral-800" onClick={toggleMenu}>
+      {isMenuOpen ? <X /> : <Menu />}
+    </button>
+  </div>
+
+
 
       {/* Mobile menu */}
       {isMenuOpen && (
