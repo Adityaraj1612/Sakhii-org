@@ -21,7 +21,7 @@ const Navbar = () => {
     {/* Logo */}
     <Link href="/">
       <div className="flex items-center cursor-pointer">
-        <Logo size="sm" />
+        <Logo size="xl" />
       </div>
     </Link>
 
