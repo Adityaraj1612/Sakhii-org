@@ -5,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Search, Users, Calendar, MessageSquare } from "lucide-react";
 import ForumCard from "@/components/community/ForumCard";
-import CommunityTopic from "@/components/community/CommunityTopic";
 import EventCard from "@/components/community/EventCard";
 
 const CommunityPage = () => {
@@ -173,21 +172,6 @@ const CommunityPage = () => {
             </div>
           </TabsContent>
           
-          <TabsContent value="topics">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {searchTerm && filteredTopics.length === 0 ? (
-                <Card className="col-span-2">
-                  <CardContent className="p-6 text-center">
-                    <p>No topics match your search criteria</p>
-                  </CardContent>
-                </Card>
-              ) : (
-                filteredTopics.map(topic => (
-                  <CommunityTopic key={topic.id} topic={topic} />
-                ))
-              )}
-            </div>
-          </TabsContent>
           
           <TabsContent value="events">
             <div className="space-y-6">
