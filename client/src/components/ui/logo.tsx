@@ -10,16 +10,16 @@ const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
   
   switch (size) {
     case 'sm':
-      sizeClass = 'h-16 w-auto'; // was h-12
+      sizeClass = 'h-[72px] w-auto'; // ~18px more than h-12 (48px)
       break;
     case 'md':
-      sizeClass = 'h-24 w-auto'; // was h-20
+      sizeClass = 'h-[96px] w-auto'; // ~24px more than h-20 (80px)
       break;
     case 'lg':
-      sizeClass = 'h-32 w-auto'; // was h-24
+      sizeClass = 'h-[120px] w-auto'; // ~24px more than h-24 (96px)
       break;
     case 'xl':
-      sizeClass = 'h-48 w-auto'; // was h-40
+      sizeClass = 'h-[160px] w-auto'; // ~20px more than h-40 (140px)
       break;
   }
   
