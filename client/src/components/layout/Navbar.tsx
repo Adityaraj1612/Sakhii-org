@@ -21,7 +21,8 @@ const Navbar = () => {
     {/* Logo */}
     <Link href="/">
       <div className="flex items-center cursor-pointer">
-       <img src="/logo.png" alt="SAKHI" className="h-10 w-auto" />
+    <Logo size="sm" />
+
 
       </div>
     </Link>
