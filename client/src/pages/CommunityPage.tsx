@@ -11,36 +11,6 @@ const CommunityPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   
   // Sample topics for the community
-  const communityTopics = [
-    { 
-      id: 1, 
-      title: "Reproductive Health", 
-      description: "Discuss questions and concerns about reproductive health topics.",
-      members: 1250, 
-      posts: 328 
-    },
-    { 
-      id: 2, 
-      title: "Pregnancy & Postpartum", 
-      description: "Support and advice for pregnancy, birth, and postpartum recovery.",
-      members: 3450, 
-      posts: 892 
-    },
-    { 
-      id: 3, 
-      title: "PCOS Support Group", 
-      description: "A community for those living with Polycystic Ovary Syndrome.",
-      members: 987, 
-      posts: 256 
-    },
-    { 
-      id: 4, 
-      title: "Mental Wellness", 
-      description: "Discussing mental health topics related to women's wellbeing.",
-      members: 1780, 
-      posts: 421 
-    },
-  ];
   
   // Sample forums
   const forumPosts = [
@@ -103,11 +73,6 @@ const CommunityPage = () => {
     post.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
-  // Filter topics based on search
-  const filteredTopics = communityTopics.filter(topic => 
-    topic.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    topic.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="py-10 bg-purple-50 min-h-screen">
