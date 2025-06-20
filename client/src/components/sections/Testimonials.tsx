@@ -43,13 +43,13 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Inserted Image with max height and object-fit */}
-        <div className="mb-8 flex justify-center">
-          <img
+        {/* <div className="mb-8 flex justify-center"> */}
+        {/* <img
             src="https://i.ibb.co/pjbbnfjT/margin-wrap.png"
             alt="margin-wrap"
             className="w-full max-w-5xl h-48 object-cover rounded-lg shadow-md"
           />
-        </div>
+        </div> */}
 
         <div className="text-center mb-12">
           <p className="text-pink-500 font-medium text-sm uppercase tracking-wide mb-2">
