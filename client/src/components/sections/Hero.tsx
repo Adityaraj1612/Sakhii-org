@@ -49,9 +49,9 @@ const Hero = () => {
           
             
             
-              <div className="rounded-lg h-80 md:h-96 w-full overflow-hidden" style={{ backgroundImage: `url(${heroimg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold text-neutral-800 mb-4 font-heading">
+              <div className="rounded-lg h-120 md:h-96 w-full overflow-hidden" style={{ backgroundImage: `url(${heroimg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className="md:w-1/2 mb-10 md:mb-0 p-4">
+              <h1 className="text-4xl md:text-4xl font-bold text-neutral-800 mb-4 font-heading">
                 {t("home.hero.mainHeading")}
               </h1>
               <p className="text-lg text-neutral-600 mb-8">
