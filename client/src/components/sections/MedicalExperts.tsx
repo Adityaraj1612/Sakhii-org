@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Video, Calendar, FileText, ArrowRight } from "lucide-react";
 import type { Doctor } from "@shared/schema";
+ import { Link } from "wouter";
 
 const fetchDoctors = async (): Promise<Doctor[]> => {
   const res = await fetch("/api/doctors");
@@ -53,12 +54,9 @@ const MedicalExperts = () => {
                   <h3 className="font-semibold">{doctor.name}</h3>
                   <p className="text-sm text-neutral-600 mb-2">{doctor.specialty}</p>
                   <p className="text-xs text-neutral-600 mb-3">{doctor.experience}</p>
-                  <Button 
-                    variant="outline" 
-                    className="w-full bg-purple-50 text-primary hover:bg-primary hover:text-white"
-                  >
-                    Book Appointment
-                  </Button>
+                   <Link to="/DoctorDirectory">
+                  <Button>Book Appointment</Button>
+                </Link>
                 </CardContent>
               </Card>
             ))
