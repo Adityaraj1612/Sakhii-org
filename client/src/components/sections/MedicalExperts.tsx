@@ -54,7 +54,7 @@ const MedicalExperts = () => {
                   <h3 className="font-semibold">{doctor.name}</h3>
                   <p className="text-sm text-neutral-600 mb-2">{doctor.specialty}</p>
                   <p className="text-xs text-neutral-600 mb-3">{doctor.experience}</p>
-                   <Link to="/DoctorDirectory">
+                   <Link to="/doctors">
                   <Button>Book Appointment</Button>
                 </Link>
                 </CardContent>
@@ -64,7 +64,7 @@ const MedicalExperts = () => {
         </div>
         
         <div className="text-center mb-12">
-            <Link to="/DoctorDirectory">
+            <Link to="/doctors">
                   <Button>View All Doctors</Button>
                 </Link>
         </div>

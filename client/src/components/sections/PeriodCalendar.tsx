@@ -84,11 +84,9 @@ const PeriodCalendar = () => {
               </div>
             </div>
             
-            <Link href="/cycle-tracking">
-              <Button variant="outline" className="bg-white">
-                Start Tracking
-              </Button>
-            </Link>
+              <Link to="/tracker">
+                  <Button>Start Tracking</Button>
+                </Link>
           </div>
           
           <div className="md:w-2/3 bg-white rounded-xl shadow-sm p-6">
