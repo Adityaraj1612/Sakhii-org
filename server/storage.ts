@@ -187,7 +187,12 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.userCurrentId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      ...insertUser, 
+      id,
+      dateOfBirth: insertUser.dateOfBirth ?? null,
+      profilePicture: insertUser.profilePicture ?? null
+    };
     this.users.set(id, user);
     return user;
   }
@@ -203,7 +208,12 @@ export class MemStorage implements IStorage {
   
   async createDoctor(insertDoctor: InsertDoctor): Promise<Doctor> {
     const id = this.doctorCurrentId++;
-    const doctor: Doctor = { ...insertDoctor, id };
+    const doctor: Doctor = {
+      ...insertDoctor,
+      id,
+      profilePicture: insertDoctor.profilePicture ?? null,
+      availability: Array.isArray(insertDoctor.availability) ? insertDoctor.availability as string[] : null
+    };
     this.doctors.set(id, doctor);
     return doctor;
   }
@@ -220,7 +230,15 @@ export class MemStorage implements IStorage {
   
   async createPeriodData(insertPeriodData: InsertPeriodData): Promise<PeriodData> {
     const id = this.periodDataCurrentId++;
-    const data: PeriodData = { ...insertPeriodData, id };
+    const data: PeriodData = {
+      id,
+      date: insertPeriodData.date,
+      userId: insertPeriodData.userId,
+      periodDay: insertPeriodData.periodDay ?? null,
+      isOvulation: insertPeriodData.isOvulation ?? null,
+      symptoms: insertPeriodData.symptoms ? Array.from(insertPeriodData.symptoms) as string[] : null,
+      notes: insertPeriodData.notes ?? null
+    };
     this.periodData.set(id, data);
     return data;
   }
@@ -228,8 +246,14 @@ export class MemStorage implements IStorage {
   async updatePeriodData(id: number, data: Partial<InsertPeriodData>): Promise<PeriodData | undefined> {
     const existingData = this.periodData.get(id);
     if (!existingData) return undefined;
-    
-    const updatedData = { ...existingData, ...data };
+
+    const updatedData: PeriodData = {
+      ...existingData,
+      ...data,
+      symptoms: data.symptoms !== undefined
+        ? (data.symptoms ? Array.from(data.symptoms) as string[] : null)
+        : existingData.symptoms
+    };
     this.periodData.set(id, updatedData);
     return updatedData;
   }
@@ -251,7 +275,17 @@ export class MemStorage implements IStorage {
   
   async createHealthMetrics(insertHealthMetrics: InsertHealthMetric): Promise<HealthMetric> {
     const id = this.healthMetricsCurrentId++;
-    const metrics: HealthMetric = { ...insertHealthMetrics, id };
+    const metrics: HealthMetric = {
+      id,
+      date: insertHealthMetrics.date,
+      userId: insertHealthMetrics.userId,
+      weight: insertHealthMetrics.weight ?? null,
+      bmi: insertHealthMetrics.bmi ?? null,
+      sleepHours: insertHealthMetrics.sleepHours ?? null,
+      waterIntake: insertHealthMetrics.waterIntake ?? null,
+      exercise: insertHealthMetrics.exercise ?? null,
+      sleepQuality: insertHealthMetrics.sleepQuality ?? null
+    };
     this.healthMetrics.set(id, metrics);
     return metrics;
   }
@@ -282,7 +316,11 @@ export class MemStorage implements IStorage {
   
   async createEducationalResource(insertResource: InsertEducationalResource): Promise<EducationalResource> {
     const id = this.educationalResourcesCurrentId++;
-    const resource: EducationalResource = { ...insertResource, id };
+    const resource: EducationalResource = { 
+      ...insertResource, 
+      id, 
+      imageUrl: insertResource.imageUrl ?? null 
+    };
     this.educationalResources.set(id, resource);
     return resource;
   }
@@ -306,7 +344,11 @@ export class MemStorage implements IStorage {
   
   async createConsultation(insertConsultation: InsertConsultation): Promise<Consultation> {
     const id = this.consultationsCurrentId++;
-    const consultation: Consultation = { ...insertConsultation, id };
+    const consultation: Consultation = { 
+      ...insertConsultation, 
+      id, 
+      notes: insertConsultation.notes ?? null 
+    };
     this.consultations.set(id, consultation);
     return consultation;
   }
