@@ -50,9 +50,9 @@ const DoctorDirectory = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {doctors?.map((doctor: Doctor) => (
+          {(Array.isArray(doctors) ? doctors : []).map((doctor: Doctor) => (
             <Card key={doctor.id} className="overflow-hidden">
-              <img src={doctor.profilePicture} alt={doctor.name} className="w-full h-48 object-cover" />
+              <img src={doctor.profilePicture ?? undefined} alt={doctor.name} className="w-full h-48 object-contain" />
               <CardContent className="p-4">
                 <h3 className="font-bold text-lg">{doctor.name}</h3>
                 <p className="text-sm text-gray-600 mb-2">{doctor.specialty}</p>
@@ -60,7 +60,7 @@ const DoctorDirectory = () => {
                   {[1,2,3,4,5].map((star) => (
                     <span key={star} className="text-yellow-400">★</span>
                   ))}
-                  <span className="text-sm text-gray-600 ml-2">({doctor.reviews || 0} reviewed)</span>
+                  <span className="text-sm text-gray-600 ml-2">(0 reviewed)</span>
                 </div>
                 <Button className="w-full">Book Now</Button>
               </CardContent>
@@ -95,15 +95,15 @@ const DoctorDirectory = () => {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <MapPin className="h-5 w-5" />
-                <span>123 Medical Center, Healthcare Street</span>
+                <span>Chandigarh University</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 9027704514</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5" />
-                <span>contact@healthcare.com</span>
+                <span>sakhiindiafoundation@gmail.com</span>
               </div>
             </div>
           </div>
