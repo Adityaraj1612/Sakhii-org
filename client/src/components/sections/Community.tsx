@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Users, Lightbulb, BookOpen } from "lucide-react";
 import communityimage from "../../../../attached_assets/community.jpg";
+import { Link } from "react-router-dom";
 const Community = () => {
   return (
     <section className="py-12 bg-white">
@@ -61,7 +62,7 @@ const Community = () => {
                 </div>
               </div>
             </div>
-            
+            <Link to='/community'></Link>
             <Button>Join Community</Button>
           </div>
         </div>
