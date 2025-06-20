@@ -19,25 +19,47 @@ const Features = () => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[0, 1, 2].map((index) => (
-            <Card 
-              key={index} 
-              className="border border-neutral-100 hover:shadow-md transition-shadow"
-            >
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  {featureIcons[index]}
-                </div>
-                <h3 className="text-xl font-semibold mb-2 font-heading">
-                  {t(`home.features.items.${index}.title`)}
-                </h3>
-                <p className="text-neutral-600">
-                  {t(`home.features.items.${index}.description`)}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+  {[0, 1, 2].map((index) => (
+    <Card 
+      key={index} 
+      className="bg-gray-50 border border-neutral-100 hover:shadow-md transition-shadow"
+    >
+      <CardContent className="p-6">
+        <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+          {featureIcons[index]}
+        </div>
+        <h3 className="text-xl font-semibold mb-2 font-heading">
+          {t(`home.features.items.${index}.title`)}
+        </h3>
+        <p className="text-neutral-600">
+          {t(`home.features.items.${index}.description`)}
+        </p>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {[0, 1, 2].map((index) => (
+    <Card 
+      key={index} 
+      className="bg-gray-50 border border-neutral-100 hover:shadow-md transition-shadow"
+    >
+      <CardContent className="p-6">
+        <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+          {featureIcons[index]}
+        </div>
+        <h3 className="text-xl font-semibold mb-2 font-heading">
+          {t(`home.features.items.${index}.title`)}
+        </h3>
+        <p className="text-neutral-600">
+          {t(`home.features.items.${index}.description`)}
+        </p>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
+
       </div>
     </section>
   );
