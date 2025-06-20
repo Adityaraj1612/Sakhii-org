@@ -4,10 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Video, Calendar, FileText, ArrowRight } from "lucide-react";
 import type { Doctor } from "@shared/schema";
 
+const fetchDoctors = async (): Promise<Doctor[]> => {
+  const res = await fetch("/api/doctors");
+  if (!res.ok) throw new Error("Failed to fetch doctors");
+  return res.json();
+};
 const MedicalExperts = () => {
   const { data: doctors, isLoading, error } = useQuery({
     queryKey: ['/api/doctors'],
-    refetchOnWindowFocus: false
+    queryFn: fetchDoctors,
+    refetchOnWindowFocus: false,
   });
 
   return (
@@ -38,9 +44,8 @@ const MedicalExperts = () => {
             doctors && doctors.map((doctor: Doctor) => (
               <Card key={doctor.id} className="bg-white rounded-xl shadow-sm overflow-hidden border border-neutral-100">
                 <div className="h-56 bg-neutral-200 relative">
-                  <img 
-                    src={doctor.profilePicture} 
-                    className="w-full h-full object-cover" 
+                  <img src={doctor.profilePicture ?? undefined} 
+                    className="w-full h-full object-contain" 
                     alt={doctor.name} 
                   />
                 </div>
