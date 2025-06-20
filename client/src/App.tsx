@@ -21,6 +21,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Tracker from "@/pages/Tracker"; // Health cycle tracker page with tabs
 import HealthGames from "@/pages/HealthGames"; // Interactive health education games
 import ChatBot from "@/components/chatbot/ChatBot"; // Floating chatbot component
+import { Router as WouterRouter } from "wouter";
+
 
 function Router() {
   const [location] = useLocation();
@@ -62,15 +64,18 @@ function Router() {
 }
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <Router />
-        <ChatBot />
-        <Toaster />
-      </AuthProvider>
-    </QueryClientProvider>
-  );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <WouterRouter>
+          <Router />
+        </WouterRouter>
+        <ChatBot />
+        <Toaster />
+      </AuthProvider>
+    </QueryClientProvider>
+  );
 }
+
 
 export default App;
