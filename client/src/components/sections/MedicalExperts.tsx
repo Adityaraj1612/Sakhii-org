@@ -64,7 +64,9 @@ const MedicalExperts = () => {
         </div>
         
         <div className="text-center mb-12">
-          <Button variant="outline">View All Doctors</Button>
+            <Link to="/DoctorDirectory">
+                  <Button>View All Doctors</Button>
+                </Link>
         </div>
         
         <div className="bg-purple-50 rounded-xl p-6 md:p-8">
