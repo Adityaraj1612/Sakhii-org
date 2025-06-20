@@ -62,54 +62,6 @@ const MedicalExperts = () => {
             ))
           )}
         </div>
-        
-        <div className="text-center mb-12">
-            <Link to="/doctors">
-                  <Button>View All Doctors</Button>
-                </Link>
-        </div>
-        
-        <div className="bg-purple-50 rounded-xl p-6 md:p-8">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/2">
-              <h3 className="text-2xl font-bold mb-4 font-heading">Online Consultation</h3>
-              <p className="text-neutral-600 mb-6">
-                Get expert medical advice from the comfort of your home. Our doctors are available 24/7 for video consultations.
-              </p>
-              
-              <div className="space-y-4 mb-6">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mr-3">
-                    <Video className="text-primary h-4 w-4" />
-                  </div>
-                  <p className="font-medium">Video Consultations</p>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mr-3">
-                    <Calendar className="text-primary h-4 w-4" />
-                  </div>
-                  <p className="font-medium">24/7 Availability</p>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mr-3">
-                    <FileText className="text-primary h-4 w-4" />
-                  </div>
-                  <p className="font-medium">Digital Prescriptions</p>
-                </div>
-              </div>
-              
-              <Button>Book Consultation</Button>
-            </div>
-            
-            <div className="md:w-1/2">
-              <div className="h-64 bg-neutral-200 rounded-lg flex items-center justify-center">
-                <span className="text-neutral-600">Image</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

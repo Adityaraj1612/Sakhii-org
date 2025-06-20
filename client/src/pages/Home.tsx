@@ -15,7 +15,6 @@ const Home = () => {
       <MedicalExperts />
       <PeriodCalendar />
       <HealthTracker />
-      
       <Community />
        <Testimonials />
        <CallToAction/>
