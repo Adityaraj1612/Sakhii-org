@@ -162,7 +162,7 @@ const PeriodCalendar = () => {
                 <span>Today</span>
               </div>
               <Link to="/tracker" onClick={() => window.scrollTo(0, 0)}>
-                <Button>Start Tracking</Button></Link>
+                <Button>View Full Calender</Button></Link>
             </div>
             
             {/* Selected Day Info */}

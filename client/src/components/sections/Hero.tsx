@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useTranslation } from 'react-i18next';
-
+import heroimg from "../../../../attached_assets/Hero.jpg"; // Adjust the path as necessary
 const Hero = () => {
   const { t } = useTranslation();
   
@@ -31,11 +31,12 @@ const Hero = () => {
           </div>
           <div className="md:w-1/2 md:pl-10">
             <div className="rounded-lg h-80 md:h-96 w-full overflow-hidden">
-              <img 
-                src="https://i.ibb.co/qMV9hBL6/Screenshot-2025-03-21-144816.png" 
-                alt={t('home.hero.imageAlt')} 
-                className="w-full h-full object-contain"
-              />
+             <img 
+  src={heroimg}
+  alt={t('home.hero.imageAlt')} 
+  className="w-full h-full object-contain"
+/>
+
             </div>
           </div>
         </div>
