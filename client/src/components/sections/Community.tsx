@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Users, Lightbulb, BookOpen } from "lucide-react";
-import communityimage from "@/assets/community.jpg";
+import communityimage from "../../../../attached_assets/community.jpg";
 const Community = () => {
   return (
     <section className="py-12 bg-white">
