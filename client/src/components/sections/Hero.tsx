@@ -5,7 +5,6 @@ import heroimg from "../../../../attached_assets/Hero.jpg";
 
 const Hero = () => {
   const { t } = useTranslation();
-
   return (
     <section 
       className="relative min-h-screen flex items-center bg-no-repeat"
