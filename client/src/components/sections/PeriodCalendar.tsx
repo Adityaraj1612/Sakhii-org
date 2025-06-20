@@ -161,7 +161,8 @@ const PeriodCalendar = () => {
                 <span className="inline-block w-3 h-3 rounded-full border-2 border-primary mr-2"></span>
                 <span>Today</span>
               </div>
-              <Link href="/cycle-tracking" className="text-primary hover:underline">View Full Calendar</Link>
+              <Link to="/tracker" onClick={() => window.scrollTo(0, 0)}>
+                <Button>Start Tracking</Button></Link>
             </div>
             
             {/* Selected Day Info */}
