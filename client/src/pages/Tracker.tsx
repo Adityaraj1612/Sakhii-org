@@ -11,6 +11,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import BBTChart from "@/components/BBTChart";
+const [bbtEntries, setBbtEntries] = useState<{ date: string; temperature: number }[]>([]);
 
 import { useAuth } from "@/contexts/AuthContext";
 import { 
@@ -891,15 +893,46 @@ const Tracker = () => {
                 
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="bbt">Basal Body Temperature (°F)</Label>
-                    <Input 
-                      id="bbt" 
-                      type="number" 
-                      step="0.01"
-                      placeholder="97.8"
-                      className="mt-1"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">Temperature above 98.6°F may indicate ovulation</p>
+                  
+                <Label htmlFor="bbt">Basal Body Temperature (°F)</Label>
+<Input 
+  id="bbt" 
+  type="number" 
+  step="0.01"
+  value={bbtValue ?? ""}
+  onChange={(e) => setBbtValue(parseFloat(e.target.value))}
+  placeholder="97.8"
+  className="mt-1"
+/>
+<p className="text-xs text-gray-500 mt-1">Temperature above 98.6°F may indicate ovulation</p>
+
+<Button
+  variant="secondary"
+  className="mt-2"
+  onClick={() => {
+    if (!selectedDate || !bbtValue) return;
+
+    const dateStr = format(selectedDate, 'yyyy-MM-dd');
+
+    const updated = [
+      ...bbtEntries.filter(entry => entry.date !== dateStr),
+      {
+        date: dateStr,
+        temperature: bbtValue,
+      }
+    ];
+
+    setBbtEntries(updated);
+
+    toast({
+      title: "BBT Logged",
+      description: `Temperature ${bbtValue}°F saved for ${dateStr}.`,
+    });
+  }}
+>
+  Save BBT
+</Button>
+
                   </div>
                   
                   <div>
@@ -1017,12 +1050,16 @@ const Tracker = () => {
                   <CardTitle>BBT Chart</CardTitle>
                   <CardDescription>Track your temperature changes to identify ovulation</CardDescription>
                 </CardHeader>
-                <CardContent className="h-64 bg-gray-50 flex items-center justify-center border-t">
-                  <div className="text-center text-gray-500">
-                    <p>Temperature chart will appear here as you log data</p>
-                    <p className="text-xs mt-2">A temperature spike often indicates ovulation has occurred</p>
-                  </div>
-                </CardContent>
+                <CardContent className="border-t">
+  <BBTChart data={[
+    { date: '2025-06-14', temperature: 97.7 },
+    { date: '2025-06-15', temperature: 97.8 },
+    { date: '2025-06-16', temperature: 98.2 },
+    { date: '2025-06-17', temperature: 98.6 },
+    { date: '2025-06-18', temperature: 98.4 },
+  ]} />
+</CardContent>
+
               </Card>
             </div>
           </div>
