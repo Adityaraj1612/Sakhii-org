@@ -54,13 +54,21 @@ const MedicalExperts = () => {
                   <h3 className="font-semibold">{doctor.name}</h3>
                   <p className="text-sm text-neutral-600 mb-2">{doctor.specialty}</p>
                   <p className="text-xs text-neutral-600 mb-3">{doctor.experience}</p>
-                   <Link to="/doctors">
-                  <Button>Book Appointment</Button>
-                </Link>
+                   <Link to="/doctors" onClick={() => window.scrollTo(0, 0)}>
+  <Button>Book Appointment</Button>
+</Link>
+
                 </CardContent>
               </Card>
             ))
           )}
+        </div>
+        
+        <div className="text-center mb-12">
+           <Link to="/doctors" onClick={() => window.scrollTo(0, 0)}>
+  <Button>View All Doctors</Button>
+</Link>
+
         </div>
       </div>
     </section>

@@ -63,7 +63,7 @@ const Community = () => {
                 </div>
               </div>
             </div>
-          <Link to="/community">
+          <Link to="/community" onClick={() => window.scrollTo(0, 0)}>
   <Button>Join Community</Button>
 </Link>
           </div>

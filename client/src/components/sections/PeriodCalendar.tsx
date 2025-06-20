@@ -84,7 +84,7 @@ const PeriodCalendar = () => {
               </div>
             </div>
             
-              <Link to="/tracker">
+              <Link to="/tracker" onClick={() => window.scrollTo(0, 0)}>
                   <Button>Start Tracking</Button>
                 </Link>
           </div>
