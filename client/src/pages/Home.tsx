@@ -12,12 +12,14 @@ const Home = () => {
     <div className="font-sans">
       <Hero />
       <Features />
+      <MedicalExperts />
       <PeriodCalendar />
       <HealthTracker />
-      <MedicalExperts />
+      
       <Community />
-       <CallToAction/>
        <Testimonials />
+       <CallToAction/>
+      
       
     </div>
   );

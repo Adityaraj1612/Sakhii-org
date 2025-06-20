@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Users, Lightbulb, BookOpen } from "lucide-react";
-
+import communityimage from "@/assets/community.jpg";
 const Community = () => {
   return (
     <section className="py-12 bg-white">
@@ -9,9 +9,14 @@ const Community = () => {
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/2">
-            <div className="h-80 bg-neutral-200 rounded-lg flex items-center justify-center">
-              <span className="text-neutral-600">Image</span>
-            </div>
+           <div className="h-80 rounded-lg overflow-hidden">
+  <img
+    src={communityimage}
+    alt="Community"
+    className="object-cover w-full h-full"
+  />
+</div>
+
           </div>
           
           <div className="md:w-1/2">
