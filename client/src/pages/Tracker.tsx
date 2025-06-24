@@ -563,9 +563,9 @@ const Tracker = () => {
 
           {/* Period Tracker Tab - Full Display */}
           <TabsContent value="period" className="min-h-[900px]">
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-12 w-full h-full">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 w-full h-full">
           {/* Left Column - Phase Information */}
-          <div className="space-y-8 min-h-[850px]">
+          <div className="space-y-8 min-h-[750px]">
             {/* Current Cycle Phase */}
             <Card className="border-l-4 border-l-pink-500 shadow-xl min-h-[200px]">
               <CardHeader>
