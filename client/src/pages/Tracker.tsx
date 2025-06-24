@@ -567,7 +567,7 @@ const Tracker = () => {
           {/* Left Column - Phase Information */}
           <div className="space-y-8 min-h-[850px]">
             {/* Current Cycle Phase */}
-            <Card className="border-l-4 border-l-pink-500 shadow-xl min-h-[400px]">
+            <Card className="border-l-4 border-l-pink-500 shadow-xl min-h-[200px]">
               <CardHeader>
                 <CardTitle>Current Cycle Phase</CardTitle>
               </CardHeader>
