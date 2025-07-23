@@ -22,7 +22,7 @@ import Tracker from "@/pages/Tracker"; // Health cycle tracker page with tabs
 import HealthGames from "@/pages/HealthGames"; // Interactive health education games
 import ChatBot from "@/components/chatbot/ChatBot"; // Floating chatbot component
 import { Router as WouterRouter } from "wouter";
-
+import VoiceAssistant from "@/components/VoiceAssistant"; // Voice assistant component
 
 function Router() {
   const [location] = useLocation();
@@ -54,6 +54,9 @@ function Router() {
           <Route path="/reset-password" component={ResetPassword} />
           <Route path="/tracker" component={Tracker} />
           <Route path="/games" component={HealthGames} />
+          <Route path="/voice-assistant" component={VoiceAssistant} />
+
+          {/* Floating chatbot component */}
           {/* Fallback to 404 */}
           <Route component={NotFound} />
         </Switch>
@@ -74,6 +77,8 @@ function App() {
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
+  
+
   );
 }
 
