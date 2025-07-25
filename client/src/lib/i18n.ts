@@ -16,7 +16,9 @@ const enTranslations = {
     dashboard: 'Dashboard',
     logout: 'Logout',
     healthTracker: 'Health Tracker',
-    healthGames: 'Health Games'
+    healthGames: 'Health Games',
+    shop: 'Shop',
+    yojanas: 'Government Schemes'
   },
   home: {
     hero: {
@@ -317,7 +319,9 @@ const hiTranslations = {
     dashboard: 'डैशबोर्ड',
     logout: 'लॉग आउट',
     healthTracker: 'स्वास्थ्य ट्रैकर',
-    healthGames: 'स्वास्थ्य खेल'
+    healthGames: 'स्वास्थ्य खेल',
+    shop: 'दुकान',
+    yojanas: 'सरकारी योजनाएं'
   },
   home: {
     hero: {
