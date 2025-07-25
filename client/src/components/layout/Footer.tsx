@@ -36,29 +36,19 @@ const Footer = () => {
             <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/about">
-                  <a className="text-purple-100 hover:text-white">About Us</a>
-                </Link>
+                <Link href="/about" className="text-purple-100 hover:text-white">About Us</Link>
               </li>
               <li>
-                <Link href="/doctors">
-                  <a className="text-purple-100 hover:text-white">Find Doctors</a>
-                </Link>
+                <Link href="/doctors" className="text-purple-100 hover:text-white">Find Doctors</Link>
               </li>
               <li>
-                <Link href="/library">
-                  <a className="text-purple-100 hover:text-white">Health Library</a>
-                </Link>
+                <Link href="/library" className="text-purple-100 hover:text-white">Health Library</Link>
               </li>
               <li>
-                <Link href="/community">
-                  <a className="text-purple-100 hover:text-white">Community</a>
-                </Link>
+                <Link href="/community" className="text-purple-100 hover:text-white">Community</Link>
               </li>
               <li>
-                <Link href="/careers">
-                  <a className="text-purple-100 hover:text-white">Careers</a>
-                </Link>
+                <Link href="/careers" className="text-purple-100 hover:text-white">Careers</Link>
               </li>
             </ul>
           </div>
@@ -105,15 +95,9 @@ const Footer = () => {
         <div className="border-t border-white border-opacity-20 mt-8 pt-8 text-center text-purple-100">
           <p>&copy; {new Date().getFullYear()} Sakhii. All rights reserved.</p>
           <div className="mt-2 space-x-4">
-            <Link href="/privacy">
-              <a className="text-purple-100 hover:text-white text-sm">Privacy Policy</a>
-            </Link>
-            <Link href="/terms">
-              <a className="text-purple-100 hover:text-white text-sm">Terms of Service</a>
-            </Link>
-            <Link href="/cookies">
-              <a className="text-purple-100 hover:text-white text-sm">Cookie Policy</a>
-            </Link>
+            <Link href="/privacy" className="text-purple-100 hover:text-white text-sm">Privacy Policy</Link>
+            <Link href="/terms" className="text-purple-100 hover:text-white text-sm">Terms of Service</Link>
+            <Link href="/cookies" className="text-purple-100 hover:text-white text-sm">Cookie Policy</Link>
           </div>
         </div>
       </div>
