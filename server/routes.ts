@@ -8,6 +8,7 @@ import {
   insertHealthMetricsSchema, 
   insertConsultationSchema
 } from "@shared/schema";
+import { askSakhii } from "./gemini";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes prefix
@@ -292,6 +293,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(200).json(updatedConsultation);
     } catch (error) {
       res.status(500).json({ message: "Failed to update consultation status" });
+    }
+  });
+
+  // Ask Sakhii AI endpoint
+  app.post(`${apiPrefix}/ask-sakhii`, async (req: Request, res: Response) => {
+    try {
+      const { message, language = 'en' } = req.body;
+      
+      if (!message || typeof message !== 'string') {
+        return res.status(400).json({ message: "Message is required" });
+      }
+      
+      const response = await askSakhii(message.trim(), language);
+      res.status(200).json({ response });
+      
+    } catch (error) {
+      console.error('Ask Sakhii error:', error);
+      res.status(500).json({ 
+        message: "Sorry, I'm having trouble processing your request right now." 
+      });
     }
   });
 

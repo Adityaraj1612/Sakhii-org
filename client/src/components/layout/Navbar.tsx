@@ -1,17 +1,17 @@
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
-import { Menu, X, Calendar, Heart, GamepadIcon, Brain, Mic, MicOff } from "lucide-react";
+import { Menu, X, Calendar, Heart, GamepadIcon, Brain, MessageCircle, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import Logo from "@/components/ui/logo";
 import LanguageSelector from "@/components/ui/language-selector";
-import { useVoiceAssistant } from "@/hooks/useVoiceAssistant";
+import AskSakhiiModal from "../ai/AskSakhiiModal";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAskSakhiiOpen, setIsAskSakhiiOpen] = useState(false);
   const [location] = useLocation();
   const { t } = useTranslation();
-  const { handleListen, listening } = useVoiceAssistant();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,26 +50,26 @@ const Navbar = () => {
           <Link href="/games" className={`${location === '/games' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
             <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
           </Link>
-          <a href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k" target="_blank" rel="noopener noreferrer">
-            <Button variant="secondary" className="bg-rose-500 text-white hover:bg-rose-600">Saathi</Button>
-          </a>
+          <Link href="/shop" className={`${location === '/shop' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.shop', 'Shop')}
+          </Link>
+          <Link href="/yojanas" className={`${location === '/yojanas' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+            <Building2 className="mr-1 h-4 w-4 text-blue-500" />
+            {t('navbar.yojanas', 'Government Schemes')}
+          </Link>
+          <Button 
+            onClick={() => setIsAskSakhiiOpen(true)}
+            variant="secondary" 
+            className="bg-rose-500 text-white hover:bg-rose-600 flex items-center"
+          >
+            <MessageCircle className="mr-1 h-4 w-4" />
+            Ask Sakhii
+          </Button>
         </nav>
 
         {/* Right Buttons */}
         <div className="hidden md:flex items-center space-x-3">
           <LanguageSelector variant="navbar" />
-
-          {/* Mic Button */}
-          <button
-            onClick={handleListen}
-            disabled={listening}
-            className={`p-2 rounded-full transition ${
-              listening ? "bg-pink-300 cursor-not-allowed" : "bg-pink-500 text-white hover:bg-pink-600"
-            }`}
-            title="Ask Saathii"
-          >
-            {listening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-          </button>
 
           <Link href="/sign-in">
             <Button variant="default" size="sm">{t('navbar.signIn')}</Button>
@@ -153,17 +153,38 @@ const Navbar = () => {
                 <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
               </Link>
             </li>
+            <li>
+              <Link 
+                href="/shop" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/shop' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.shop', 'Shop')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/yojanas" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/yojanas' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold py-1 flex items-center`}
+              >
+                <Building2 className="mr-1 h-4 w-4 text-blue-500" />
+                {t('navbar.yojanas', 'Government Schemes')}
+              </Link>
+            </li>
              <li>
-  <a
-    href="https://elevenlabs.io/app/talk-to?agent_id=gXXbKfP9XqgHho0VO58k"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <Button variant="secondary" className="w-full mt-2 bg-rose-500 text-white hover:bg-rose-600 font-semibold">
-      Saathi
-    </Button>
-  </a>
-</li>
+              <Button 
+                onClick={() => {
+                  setIsAskSakhiiOpen(true);
+                  setIsMenuOpen(false);
+                }}
+                variant="secondary" 
+                className="w-full mt-2 bg-rose-500 text-white hover:bg-rose-600 font-semibold flex items-center justify-center"
+              >
+                <MessageCircle className="mr-1 h-4 w-4" />
+                Ask Sakhii
+              </Button>
+            </li>
 
             <li className="pt-2 border-t">
               <Link 
@@ -193,6 +214,12 @@ const Navbar = () => {
           </ul>
         </div>
       )}
+      
+      {/* Ask Sakhii Modal */}
+      <AskSakhiiModal 
+        isOpen={isAskSakhiiOpen} 
+        onClose={() => setIsAskSakhiiOpen(false)} 
+      />
     </header>
   );
 };
