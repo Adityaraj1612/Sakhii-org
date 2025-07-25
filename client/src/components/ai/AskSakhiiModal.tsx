@@ -67,6 +67,13 @@ const AskSakhiiModal: React.FC<AskSakhiiModalProps> = ({ isOpen, onClose }) => {
         const transcript = event.results[0][0].transcript;
         setInput(transcript);
         setIsRecording(false);
+        
+        // Auto-send the voice input after 2 seconds
+        setTimeout(() => {
+          if (transcript.trim()) {
+            sendMessage(transcript);
+          }
+        }, 2000);
       };
       
       recognitionRef.current.onerror = () => {
@@ -189,7 +196,16 @@ const AskSakhiiModal: React.FC<AskSakhiiModalProps> = ({ isOpen, onClose }) => {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    // Clean text for better speech synthesis - remove asterisks, extra commas, and other formatting
+    const cleanedText = text
+      .replace(/\*\*/g, '') // Remove bold markdown asterisks
+      .replace(/\*/g, '') // Remove italic markdown asterisks
+      .replace(/\n+/g, ' ') // Replace line breaks with spaces
+      .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+      .replace(/[^\w\s\u0900-\u097F\u0B80-\u0BFF\u0C00-\u0C7F\u0980-\u09FF\u0A80-\u0AFF\u0D00-\u0D7F\u0C80-\u0CFF\u0B00-\u0B7F\u0A00-\u0A7F.,!?;:\-\(\)]/g, '') // Keep only letters, numbers, spaces, and basic punctuation
+      .trim();
+
+    const utterance = new SpeechSynthesisUtterance(cleanedText);
     
     // Get available voices and prioritize Hindi voice
     const voices = window.speechSynthesis.getVoices();
@@ -221,7 +237,16 @@ const AskSakhiiModal: React.FC<AskSakhiiModalProps> = ({ isOpen, onClose }) => {
     utterance.pitch = 1.1; // Slightly higher pitch for female voice
     
     utterance.onstart = () => setIsSpeaking(true);
-    utterance.onend = () => setIsSpeaking(false);
+    utterance.onend = () => {
+      setIsSpeaking(false);
+      // Auto-focus on input field after speech ends for next question
+      setTimeout(() => {
+        const inputElement = document.querySelector('input[placeholder*="Type"]') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        }
+      }, 1000);
+    };
     utterance.onerror = () => setIsSpeaking(false);
     
     synthesisRef.current = utterance;
