@@ -1,13 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Users, Lightbulb, BookOpen } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import communityimage from "../../../../attached_assets/community.jpg";
 import { Link } from "wouter";
 
 const Community = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 font-heading">Join Our Community</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 font-heading">
+          {t('home.community.title', 'Join Our Community')}
+        </h2>
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/2">
@@ -23,7 +28,7 @@ const Community = () => {
           
           <div className="md:w-1/2">
             <h3 className="text-2xl font-bold mb-4 font-heading">
-              Connect with peers, experts and supportive communities
+              {t('home.community.subtitle', 'Connect with peers, experts and supportive communities')}
             </h3>
             
             <div className="space-y-4 mb-6">
@@ -32,9 +37,11 @@ const Community = () => {
                   <Users className="text-primary h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-lg">Supportive Environment</h4>
+                  <h4 className="font-semibold text-lg">
+                    {t('home.community.features.supportive.title', 'Supportive Environment')}
+                  </h4>
                   <p className="text-neutral-600">
-                    Join discussion groups with women experiencing similar health journeys
+                    {t('home.community.features.supportive.description', 'Join discussion groups with women experiencing similar health journeys')}
                   </p>
                 </div>
               </div>
@@ -44,9 +51,11 @@ const Community = () => {
                   <Lightbulb className="text-primary h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-lg">Expert-led Guidance</h4>
+                  <h4 className="font-semibold text-lg">
+                    {t('home.community.features.expert.title', 'Expert-led Guidance')}
+                  </h4>
                   <p className="text-neutral-600">
-                    Participate in Q&A sessions with qualified healthcare professionals
+                    {t('home.community.features.expert.description', 'Participate in Q&A sessions with qualified healthcare professionals')}
                   </p>
                 </div>
               </div>
@@ -56,9 +65,11 @@ const Community = () => {
                   <BookOpen className="text-primary h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-lg">Knowledge Sharing</h4>
+                  <h4 className="font-semibold text-lg">
+                    {t('home.community.features.knowledge.title', 'Knowledge Sharing')}
+                  </h4>
                   <p className="text-neutral-600">
-                    Access community-sourced tips, experiences, and recommendations
+                    {t('home.community.features.knowledge.description', 'Access community-sourced tips, experiences, and recommendations')}
                   </p>
                 </div>
               </div>

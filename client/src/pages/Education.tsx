@@ -8,17 +8,15 @@ import type { EducationalResource } from "@shared/schema";
 const Education = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   
-  const { data: resources, isLoading, error } = useQuery({
+  const { data: resources = [], isLoading, error } = useQuery<EducationalResource[]>({
     queryKey: ['/api/educationalResources'],
     refetchOnWindowFocus: false
   });
   
   // Filter resources by category
-  const filteredResources = resources ? 
-    (selectedCategory === "all" ? 
-      resources : 
-      resources.filter((resource: EducationalResource) => resource.category === selectedCategory)
-    ) : [];
+  const filteredResources = selectedCategory === "all"
+    ? resources
+    : (resources as EducationalResource[]).filter((resource: EducationalResource) => resource.category === selectedCategory);
 
   return (
     <div className="py-10 bg-purple-50 min-h-screen">

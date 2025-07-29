@@ -273,7 +273,7 @@ const ChatBot: React.FC = () => {
     handleSendMessageWithText(input);
   };
   
-  const handleSendMessageWithText = (messageText: string) => {
+  const handleSendMessageWithText = async (messageText: string) => {
     if (!messageText.trim()) return;
     
     // Add user message
@@ -288,13 +288,33 @@ const ChatBot: React.FC = () => {
     setInput('');
     setLoading(true);
     
-    // Simulate AI response delay
-    setTimeout(() => {
-      const response = generateResponse(messageText);
+    try {
+      // Try AI API first
+      const response = await fetch('/api/ask-sakhii', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: messageText,
+          language: currentLanguage
+        }),
+      });
+
+      let assistantResponse: string;
+      
+      if (response.ok) {
+        const data = await response.json();
+        assistantResponse = data.response;
+      } else {
+        // Fallback to keyword-based response
+        console.log('API unavailable, using keyword matching');
+        assistantResponse = generateResponse(messageText);
+      }
       
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: response,
+        content: assistantResponse,
         role: 'assistant',
         timestamp: new Date(),
       };
@@ -308,10 +328,25 @@ const ChatBot: React.FC = () => {
         window.speechSynthesis.cancel();
         
         // Set the text and speak
-        synthesisRef.current.text = response;
+        synthesisRef.current.text = assistantResponse;
         window.speechSynthesis.speak(synthesisRef.current);
       }
-    }, 1000);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      
+      // Fallback to keyword-based response
+      const fallbackResponse = generateResponse(messageText);
+      
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: fallbackResponse,
+        role: 'assistant',
+        timestamp: new Date(),
+      };
+      
+      setMessages(prev => [...prev, assistantMessage]);
+      setLoading(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

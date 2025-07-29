@@ -18,7 +18,8 @@ const enTranslations = {
     healthTracker: 'Health Tracker',
     healthGames: 'Health Games',
     shop: 'Shop',
-    yojanas: 'Government Schemes'
+    yojanas: 'Government Schemes',
+    askSakhii: 'Ask Sakhii'
   },
   home: {
     hero: {
@@ -53,6 +54,36 @@ const enTranslations = {
       connectDesc: 'Book virtual consultations with experienced gynecologists and healthcare providers.',
       resourcesTitle: 'Educational Resources',
       resourcesDesc: 'Access evidence-based information on women\'s health, nutrition, and wellness.'
+    },
+    medicalExperts: {
+      title: 'Our Medical Experts',
+      failedToLoad: 'Failed to load doctors',
+      bookAppointment: 'Book Appointment',
+      viewAllDoctors: 'View All Doctors'
+    },
+    community: {
+      title: 'Join Our Community',
+      subtitle: 'Connect with peers, experts and supportive communities',
+      features: {
+        supportive: {
+          title: 'Supportive Environment',
+          description: 'Join discussion groups with women experiencing similar health journeys'
+        },
+        expert: {
+          title: 'Expert-led Guidance',
+          description: 'Participate in Q&A sessions with qualified healthcare professionals'
+        },
+        knowledge: {
+          title: 'Knowledge Sharing',
+          description: 'Access community-sourced tips, experiences, and recommendations'
+        }
+      },
+      joinButton: 'Join Community'
+    },
+    cta: {
+      title: "Don't Wait, Embark on Your Health Journey Today",
+      subtitle: 'Take the first step towards better health and wellness with Sakhi',
+      getStarted: 'Get Started'
     },
     education: {
       title: 'Educational Resources',
@@ -796,27 +827,11 @@ const teTranslations = {
 };
 
 const resources = {
-  en: {
-    translation: enTranslations
-  },
-  hi: {
-    translation: hiTranslations
-  },
-  bn: {
-    translation: bnTranslations
-  },
-  ta: {
-    translation: taTranslations
-  },
-  te: {
-    translation: teTranslations
-  }
-};
-
-const DETECTION_OPTIONS = {
-  order: ['localStorage', 'navigator'],
-  lookupLocalStorage: 'language',
-  caches: ['localStorage'],
+  en: { translation: enTranslations },
+  hi: { translation: hiTranslations },
+  bn: { translation: bnTranslations },
+  ta: { translation: taTranslations },
+  te: { translation: teTranslations }
 };
 
 i18n
@@ -825,10 +840,27 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    detection: DETECTION_OPTIONS,
+    debug: false,
     interpolation: {
-      escapeValue: false, // React already escapes values
+      escapeValue: false,
     },
+    detection: {
+      order: ['localStorage', 'navigator', 'htmlTag'],
+      lookupLocalStorage: 'language',
+      caches: ['localStorage']
+    }
   });
+
+// Auto-detect preferred language on first visit
+if (!localStorage.getItem('language')) {
+  const userLang = navigator.language || navigator.languages?.[0] || 'en';
+  const supportedLang = ['en', 'hi', 'bn', 'ta', 'te', 'mr'].find(lang => 
+    userLang.toLowerCase().startsWith(lang)
+  );
+  if (supportedLang && supportedLang !== 'en') {
+    i18n.changeLanguage(supportedLang);
+    localStorage.setItem('language', supportedLang);
+  }
+}
 
 export default i18n;

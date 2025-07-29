@@ -6,19 +6,23 @@ import {
   signOut, 
   updateProfile as updateFirebaseProfile,
   onAuthStateChanged,
-  User as FirebaseUser
+  User as FirebaseUser,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithPhoneNumber,
+  RecaptchaVerifier,
+  ConfirmationResult
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// Firebase configuration
-// These values should be replaced with your actual Firebase project config
+// Firebase configuration using environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyBDC1cooe4zok2DGaaLEUFMV_FiOcJ14nA",
-  authDomain: "login-page-8229f.firebaseapp.com",
-  projectId: "login-page-8229f",
-  storageBucket: "login-page-8229f.firebasestorage.app",
-  messagingSenderId: "973268611847",
-  appId: "1:973268611847:web:fc8f6e0983a47438190ba2"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 
@@ -46,4 +50,35 @@ export const updateUserProfile = (user: FirebaseUser, profile: { displayName?: s
 
 export const subscribeToAuthChanges = (callback: (user: FirebaseUser | null) => void) => {
   return onAuthStateChanged(auth, callback);
+};
+
+// Google authentication
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  prompt: 'select_account'
+});
+
+export const signInWithGoogle = () => {
+  return signInWithPopup(auth, googleProvider);
+};
+
+// Phone authentication
+export const setupRecaptcha = (containerId: string) => {
+  return new RecaptchaVerifier(auth, containerId, {
+    size: 'invisible',
+    callback: () => {
+      console.log('reCAPTCHA solved');
+    },
+    'expired-callback': () => {
+      console.log('reCAPTCHA expired');
+    }
+  });
+};
+
+export const signInWithPhone = (phoneNumber: string, recaptchaVerifier: RecaptchaVerifier) => {
+  return signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
+};
+
+export const verifyOTP = (confirmationResult: ConfirmationResult, code: string) => {
+  return confirmationResult.confirm(code);
 };

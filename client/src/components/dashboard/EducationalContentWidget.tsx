@@ -41,7 +41,7 @@ const EducationalContentWidget = ({ fullWidth = false }: EducationalContentWidge
     }
   ];
   
-  const displayResources = resources || fallbackResources;
+  const displayResources = Array.isArray(resources) ? resources : fallbackResources;
   
   // Only show first resource if not full width
   const limitedResources = fullWidth ? displayResources : [displayResources[0]];

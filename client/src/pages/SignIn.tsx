@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Mail, Eye, EyeOff, Facebook } from "lucide-react";
+import { Mail, Eye, EyeOff, Facebook, Phone } from "lucide-react";
+import PhoneAuth from "@/components/auth/PhoneAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -28,6 +29,7 @@ type SignInFormValues = z.infer<typeof signInSchema>;
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPhoneAuth, setShowPhoneAuth] = useState(false);
   const { toast } = useToast();
   const [_, setLocation] = useLocation();
   const { t } = useTranslation();
@@ -62,6 +64,59 @@ const SignIn = () => {
       setIsSubmitting(false);
     }
   };
+
+  const handlePhoneAuthSuccess = () => {
+    setShowPhoneAuth(false);
+    setLocation("/dashboard");
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const { signInWithGoogle } = await import("@/lib/firebase");
+      const result = await signInWithGoogle();
+      
+      if (result.user) {
+        toast({
+          title: "Success",
+          description: "Successfully signed in with Google!",
+        });
+        setLocation("/dashboard");
+      }
+    } catch (error: any) {
+      console.error('Google sign in error:', error);
+      
+      if (error.code === 'auth/unauthorized-domain') {
+        toast({
+          title: "Domain Authorization Required",
+          description: "Please add this domain to Firebase authorized domains in the console.",
+          variant: "destructive",
+        });
+      } else if (error.code === 'auth/popup-blocked') {
+        toast({
+          title: "Popup Blocked",
+          description: "Please allow popups for this site and try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: error.message || "Google sign in failed",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
+  if (showPhoneAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+        <PhoneAuth 
+          onSuccess={handlePhoneAuthSuccess}
+          onCancel={() => setShowPhoneAuth(false)}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-purple-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -168,8 +223,12 @@ const SignIn = () => {
               </div>
             </div>
             
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <Button variant="outline" className="w-full">
+            <div className="mt-6 grid grid-cols-1 gap-3">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={handleGoogleSignIn}
+              >
                 <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
                   <path
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -188,12 +247,16 @@ const SignIn = () => {
                     fill="#EA4335"
                   />
                 </svg>
-                Google
+                Continue with Google
               </Button>
               
-              <Button variant="outline" className="w-full">
-                <Facebook className="h-5 w-5 mr-2 text-blue-600" />
-                Facebook
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => setShowPhoneAuth(true)}
+              >
+                <Phone className="h-5 w-5 mr-2 text-green-600" />
+                Continue with Phone
               </Button>
             </div>
           </div>

@@ -18,10 +18,18 @@ export interface User {
   uid: string;
   email: string;
   fullName: string;
+  phoneNumber?: string | null;
   dateOfBirth: string | null;
   profilePicture: string | null;
   height?: number | null;
   weight?: number | null;
+  bloodType?: string | null;
+  emergencyContact?: string | null;
+  medicalConditions?: string | null;
+  medications?: string | null;
+  allergies?: string | null;
+  address?: string | null;
+  occupation?: string | null;
 }
 
 interface AuthContextType {
@@ -165,16 +173,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(prev => prev ? { ...prev, ...userData } : null);
       
       toast({
-        title: t('profile.updateSuccessTitle'),
-        description: t('profile.updateSuccessMessage'),
+        title: "Profile Updated",
+        description: "Your profile has been successfully updated!",
       });
       
       return true;
     } catch (error: any) {
       console.error('Profile update error:', error);
       toast({
-        title: t('profile.updateErrorTitle'),
-        description: error.message || t('profile.updateErrorMessage'),
+        title: "Error",
+        description: error.message || "Failed to update profile. Please try again.",
         variant: 'destructive',
       });
       return false;

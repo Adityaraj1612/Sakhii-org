@@ -11,17 +11,19 @@ const Library = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("articles");
   
-  const { data: resources, isLoading, error } = useQuery({
+  const { data: resourcesRaw, isLoading, error } = useQuery({
     queryKey: ['/api/educationalResources'],
     refetchOnWindowFocus: false
   });
-  
+
+  // Ensure resources is always an array
+  const resources: EducationalResource[] = Array.isArray(resourcesRaw) ? resourcesRaw : [];
+
   // Filter resources based on search
-  const filteredResources = resources ? 
-    resources.filter((resource: EducationalResource) => 
-      resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      resource.description.toLowerCase().includes(searchTerm.toLowerCase())
-    ) : [];
+  const filteredResources = resources.filter((resource: EducationalResource) => 
+    resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    resource.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="py-10 bg-purple-50 min-h-screen">

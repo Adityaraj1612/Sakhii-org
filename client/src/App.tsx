@@ -34,10 +34,15 @@ import Yojanas from '@/pages/government/Yojanas';
 import ChatBot from '@/components/chatbot/ChatBot';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 import './index.css';
+import '@/lib/i18n';
+import useLanguageNotification from '@/hooks/useLanguageNotification';
 
 function App() {
+  useLanguageNotification();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -48,26 +53,85 @@ function App() {
               {/* Main routes */}
               <Route path="/" component={Home} />
               <Route path="/signin" component={SignIn} />
+              <Route path="/sign-in" component={SignIn} />
               <Route path="/signup" component={SignUp} />
+              <Route path="/sign-up" component={SignUp} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password" component={ResetPassword} />
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/cycle-tracking" component={CycleTracking} />
-              <Route path="/tracker" component={Tracker} />
-              <Route path="/education" component={Education} />
-              <Route path="/doctors" component={DoctorDirectory} />
-              <Route path="/community" component={CommunityPage} />
-              <Route path="/library" component={Library} />
-              <Route path="/health-trackers" component={HealthTrackers} />
-              <Route path="/health-games" component={HealthGames} />
-              <Route path="/contact" component={Contact} />
+              <Route path="/dashboard">
+                <ProtectedRoute requireProfile={true}>
+                  <Dashboard />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/profile">
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/cycle-tracking">
+                <ProtectedRoute requireProfile={true}>
+                  <CycleTracking />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/tracker">
+                <ProtectedRoute requireProfile={true}>
+                  <Tracker />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/education">
+                <ProtectedRoute>
+                  <Education />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/doctors">
+                <ProtectedRoute>
+                  <DoctorDirectory />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/community">
+                <ProtectedRoute>
+                  <CommunityPage />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/library">
+                <ProtectedRoute>
+                  <Library />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/health-trackers">
+                <ProtectedRoute requireProfile={true}>
+                  <HealthTrackers />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/health-games">
+                <ProtectedRoute>
+                  <HealthGames />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/games">
+                <ProtectedRoute>
+                  <HealthGames />
+                </ProtectedRoute>
+              </Route>
+              <Route path="/contact">
+                <ProtectedRoute>
+                  <Contact />
+                </ProtectedRoute>
+              </Route>
               
               {/* E-commerce routes */}
-              <Route path="/shop" component={Shop} />
+              <Route path="/shop">
+                <ProtectedRoute>
+                  <Shop />
+                </ProtectedRoute>
+              </Route>
               
               {/* Government routes */}
-              <Route path="/yojanas" component={Yojanas} />
+              <Route path="/yojanas">
+                <ProtectedRoute>
+                  <Yojanas />
+                </ProtectedRoute>
+              </Route>
               
               {/* 404 route */}
               <Route component={NotFound} />
