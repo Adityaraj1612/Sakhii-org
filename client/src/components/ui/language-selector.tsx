@@ -24,9 +24,24 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ variant = 'default'
     { code: 'or', name: t('languages.odia') }
   ];
   
-  const changeLanguage = (languageCode: string) => {
-    i18n.changeLanguage(languageCode);
-    localStorage.setItem('language', languageCode);
+  const changeLanguage = async (languageCode: string) => {
+    try {
+      await i18n.changeLanguage(languageCode);
+      localStorage.setItem('language', languageCode);
+      
+      // Show success notification
+      setTimeout(() => {
+        const event = new CustomEvent('showLanguageChangeToast', {
+          detail: { 
+            language: languages.find(l => l.code === languageCode)?.name || languageCode,
+            success: true
+          }
+        });
+        window.dispatchEvent(event);
+      }, 100);
+    } catch (error) {
+      console.error('Failed to change language:', error);
+    }
   };
   
   if (variant === 'navbar') {
