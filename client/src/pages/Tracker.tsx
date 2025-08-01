@@ -719,7 +719,7 @@ const Tracker = () => {
                   />
                 </div>
 
-                <Button onClick={savePeriodEntry} className="w-full bg-pink-500 hover:bg-pink-600">
+                <Button type="button" onClick={savePeriodEntry} className="w-full bg-pink-500 hover:bg-pink-600">
                   Save & Update Calendar
                 </Button>
               </CardContent>
@@ -737,6 +737,7 @@ const Tracker = () => {
                     <p className="text-sm mt-1">{phaseGuidance[currentPhase].description}</p>
                   </div>
                   <Button 
+                    type="button"
                     variant="ghost" 
                     size="sm"
                     onClick={() => setShowPhaseGuidance(false)}
@@ -846,7 +847,7 @@ const Tracker = () => {
                   />
                 </div>
 
-                <Button onClick={saveSymptoms} className="w-full bg-pink-500 hover:bg-pink-600">
+                <Button type="button" onClick={saveSymptoms} className="w-full bg-pink-500 hover:bg-pink-600">
                   Save Symptoms
                 </Button>
               </CardContent>
@@ -871,12 +872,14 @@ const Tracker = () => {
                         <Label>Are you currently pregnant?</Label>
                         <div className="flex space-x-4 mt-2">
                           <Button 
+                            type="button"
                             variant={isPregnant ? "default" : "outline"}
                             onClick={() => setIsPregnant(true)}
                           >
                             Yes
                           </Button>
                           <Button 
+                            type="button"
                             variant={!isPregnant ? "default" : "outline"}
                             onClick={() => setIsPregnant(false)}
                           >
@@ -972,6 +975,7 @@ const Tracker = () => {
                           <Label>Baby Kicks Today</Label>
                           <div className="flex items-center space-x-4 mt-2">
                             <Button 
+                              type="button"
                               variant="outline" 
                               onClick={() => setBabyKicks(Math.max(0, babyKicks - 1))}
                             >
@@ -979,6 +983,7 @@ const Tracker = () => {
                             </Button>
                             <span className="text-lg font-semibold">{babyKicks}</span>
                             <Button 
+                              type="button"
                               variant="outline" 
                               onClick={() => setBabyKicks(babyKicks + 1)}
                             >
@@ -1018,7 +1023,7 @@ const Tracker = () => {
                           />
                         </div>
                         
-                        <Button className="w-full bg-pink-500 hover:bg-pink-600">
+                        <Button type="button" className="w-full bg-pink-500 hover:bg-pink-600">
                           Save Pregnancy Data
                         </Button>
                       </CardContent>
@@ -1052,15 +1057,15 @@ const Tracker = () => {
                         <CardTitle>Quick Tools</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        <Button variant="outline" className="w-full justify-start">
+                        <Button type="button" variant="outline" className="w-full justify-start">
                           <Calendar className="h-4 w-4 mr-2" />
                           Due Date Calculator
                         </Button>
-                        <Button variant="outline" className="w-full justify-start">
+                        <Button type="button" variant="outline" className="w-full justify-start">
                           <CheckCircle className="h-4 w-4 mr-2" />
                           Hospital Bag Checklist
                         </Button>
-                        <Button variant="outline" className="w-full justify-start">
+                        <Button type="button" variant="outline" className="w-full justify-start">
                           <Scale className="h-4 w-4 mr-2" />
                           Weight Tracker
                         </Button>

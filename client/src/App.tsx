@@ -74,7 +74,7 @@ function App() {
                 </ProtectedRoute>
               </Route>
               <Route path="/tracker">
-                <ProtectedRoute requireProfile={true}>
+                <ProtectedRoute>
                   <Tracker />
                 </ProtectedRoute>
               </Route>
