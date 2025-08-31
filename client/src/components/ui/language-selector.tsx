@@ -46,7 +46,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ variant = 'default'
   
   if (variant === 'navbar') {
     return (
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <Select
           value={i18n.language}
           onValueChange={changeLanguage}
@@ -68,12 +68,12 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ variant = 'default'
   
   return (
     <div className="flex items-center gap-2">
-      <Globe className="h-4 w-4 text-muted-foreground" />
+      <Globe className="h-4 w-4 text-muted-foreground " />
       <Select
         value={i18n.language}
         onValueChange={changeLanguage}
       >
-        <SelectTrigger className="min-w-[150px]">
+        <SelectTrigger className="min-w-[150px] ">
           <SelectValue placeholder={t('languages.language')} />
         </SelectTrigger>
         <SelectContent>
