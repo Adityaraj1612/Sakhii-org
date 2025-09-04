@@ -110,8 +110,23 @@ const Profile = () => {
           description: "Your profile has been successfully updated!",
         });
         
-        // Force refresh to show updated data
-        window.location.reload();
+        // Update form with new data
+        form.reset({
+          fullName: profileData.fullName || user?.fullName || "",
+          email: user?.email || "",
+          phoneNumber: profileData.phoneNumber || user?.phoneNumber || "",
+          dateOfBirth: profileData.dateOfBirth || user?.dateOfBirth || "",
+          height: profileData.height || user?.height || 0,
+          weight: profileData.weight || user?.weight || 0,
+          bloodType: profileData.bloodType || user?.bloodType || "",
+          emergencyContact: profileData.emergencyContact || user?.emergencyContact || "",
+          medicalConditions: profileData.medicalConditions || user?.medicalConditions || "",
+          medications: profileData.medications || user?.medications || "",
+          allergies: profileData.allergies || user?.allergies || "",
+          address: profileData.address || user?.address || "",
+          occupation: profileData.occupation || user?.occupation || "",
+          profilePicture: profileData.profilePicture || user?.profilePicture || "",
+        });
       } else {
         throw new Error('Profile update failed');
       }

@@ -1,26 +1,27 @@
 import React from "react";
+import { useTranslation } from 'react-i18next'
 import about1 from "../../src/assets/Rectangle 11.png"
 import about2 from "../../src/assets/Rectangle 32.png"
 import about3 from "../../src/assets/Rectangle 54.png"
 
 const AboutSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="bg-white py-16 px-4 md:px-12 lg:px-20 max-w-6xl mx-auto">
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
-        About Sakhii Care Foundation
+        {t('home.about.title', 'About Sakhii Care Foundation')}
       </h2>
 
       {/* Vision & Mission Container */}
       <div className="grid md:grid-cols-2 gap-10 items-center">
         {/* Vision */}
         <div className="flex flex-col items-center md:items-end ">
-          <h3 className="text-3xl font-bold text-[#CA3561] mb-3">Our Vision</h3>
+          <h3 className="text-3xl font-bold text-[#CA3561] mb-3">{t('home.about.ourVision', 'Our Vision')}</h3>
           <p className="text-gray-700 text-center md:text-left w-75 ">
-            To create an inclusive, informed, and empowered society where every
-            woman regardless of her location, background,  or literacy level has{" "}
+            {t('home.about.visionText1', 'To create an inclusive, informed, and empowered society where every woman regardless of her location, background, or literacy level has')}{" "}
             <span className="text-[#CA3561] font-medium">
-              access to personalized healthcare, education, and support.
+              {t('home.about.visionText2', 'access to personalized healthcare, education, and support.')}
             </span>
           </p>
         </div>
@@ -52,15 +53,13 @@ const AboutSection = () => {
 
         {/* Mission */}
         <div className="flex flex-col items-center md:items-start">
-          <h3 className="text-3xl font-bold text-[#CA3561] mb-3">Our Mission</h3>
+          <h3 className="text-3xl font-bold text-[#CA3561] mb-3">{t('home.about.ourMission', 'Our Mission')}</h3>
           <p className="text-gray-700 text-center md:text-left md:w-75">
-            To empower every woman with accessible, personalized healthcare and
-            education through{" "}
+            {t('home.about.missionText1', 'To empower every woman with accessible, personalized healthcare and education through')}{" "}
             <span className="text-rose-500 font-medium">
-              AI powered tools, trusted medical support, and a safe digital
-              community
+              {t('home.about.missionText2', 'AI powered tools, trusted medical support, and a safe digital community')}
             </span>{" "}
-            no matter where she lives.
+            {t('home.about.missionText3', 'no matter where she lives.')}
           </p>
         </div>
       </div>

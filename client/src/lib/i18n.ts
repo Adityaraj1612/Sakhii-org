@@ -19,7 +19,8 @@ const enTranslations = {
     healthGames: 'Health Games',
     shop: 'Shop',
     yojanas: 'Government Schemes',
-    askSakhii: 'Ask Sakhii'
+    askSakhii: 'Ask Sakhii',
+    sos: 'SOS'
   },
   home: {
     hero: {
@@ -30,7 +31,27 @@ const enTranslations = {
       imageAlt: 'Women\'s health illustration',
       title: 'Your Trusted Partner in Women\'s Health',
       subtitle: 'Track your cycle, connect with specialists, and access resources for a healthier you.',
-      cta: 'Get Started'
+      cta: 'Get Started',
+      foundationName: 'Sakhii Care Foundation',
+      empoweringWomen: 'Empowering women',
+      through: 'through',
+      healthEducation: 'health, education',
+      andDignity: 'and dignity',
+      usingAI: 'using AI',
+      and: 'and',
+      communityCare: 'community care',
+      forImpact: 'for',
+      lastingImpact: 'lasting impact'
+    },
+    about: {
+      title: 'About Sakhii Care Foundation',
+      ourVision: 'Our Vision',
+      visionText1: 'To create an inclusive, informed, and empowered society where every woman regardless of her location, background, or literacy level has',
+      visionText2: 'access to personalized healthcare, education, and support.',
+      ourMission: 'Our Mission',
+      missionText1: 'To empower every woman with accessible, personalized healthcare and education through',
+      missionText2: 'AI powered tools, trusted medical support, and a safe digital community',
+      missionText3: 'no matter where she lives.'
     },
     features: {
       title: 'Our Features',
@@ -333,6 +354,12 @@ const enTranslations = {
       markLearningComplete: 'Mark Learning Complete',
       resetProgress: 'Reset Progress'
     }
+  },
+  sos: {
+    title: 'Emergency Helplines',
+    description: 'In case of emergency, you can call these helpline numbers for immediate assistance:',
+    note: 'Note:',
+    noteText: 'These services are free and available across India. In life-threatening emergencies, call 112 immediately.'
   }
 };
 
@@ -352,7 +379,9 @@ const hiTranslations = {
     healthTracker: 'स्वास्थ्य ट्रैकर',
     healthGames: 'स्वास्थ्य खेल',
     shop: 'दुकान',
-    yojanas: 'सरकारी योजनाएं'
+    yojanas: 'सरकारी योजनाएं',
+    askSakhii: 'सखी से पूछें',
+    sos: 'एसओएस'
   },
   home: {
     hero: {
@@ -363,7 +392,27 @@ const hiTranslations = {
       imageAlt: 'महिलाओं के स्वास्थ्य का चित्रण',
       title: 'महिलाओं के स्वास्थ्य में आपका विश्वसनीय साथी',
       subtitle: 'अपने चक्र को ट्रैक करें, विशेषज्ञों से जुड़ें, और स्वस्थ जीवन के लिए संसाधनों तक पहुंचें।',
-      cta: 'शुरू करें'
+      cta: 'शुरू करें',
+      foundationName: 'सखी केयर फाउंडेशन',
+      empoweringWomen: 'महिलाओं को सशक्त बनाना',
+      through: 'के माध्यम से',
+      healthEducation: 'स्वास्थ्य, शिक्षा',
+      andDignity: 'और गरिमा',
+      usingAI: 'एआई का उपयोग करके',
+      and: 'और',
+      communityCare: 'सामुदायिक देखभाल',
+      forImpact: 'के लिए',
+      lastingImpact: 'स्थायी प्रभाव'
+    },
+    about: {
+      title: 'सखी केयर फाउंडेशन के बारे में',
+      ourVision: 'हमारा दृष्टिकोण',
+      visionText1: 'एक समावेशी, सूचित और सशक्त समाज बनाना जहां हर महिला अपने स्थान, पृष्ठभूमि या शिक्षा के स्तर की परवाह किए बिना',
+      visionText2: 'व्यक्तिगत स्वास्थ्य सेवा, शिक्षा और सहायता तक पहुंच रखती है।',
+      ourMission: 'हमारा मिशन',
+      missionText1: 'हर महिला को सुलभ, व्यक्तिगत स्वास्थ्य सेवा और शिक्षा के साथ सशक्त बनाना',
+      missionText2: 'एआई संचालित उपकरण, विश्वसनीय चिकित्सा सहायता और एक सुरक्षित डिजिटल समुदाय',
+      missionText3: 'चाहे वह कहीं भी रहती हो।'
     },
     features: {
       title: 'हमारी विशेषताएं',
@@ -533,6 +582,12 @@ const hiTranslations = {
       markLearningComplete: 'सीखना पूरा करें',
       resetProgress: 'प्रगति रीसेट करें'
     }
+  },
+  sos: {
+    title: 'आपातकालीन हेल्पलाइन',
+    description: 'आपातकाल की स्थिति में, तत्काल सहायता के लिए आप इन हेल्पलाइन नंबरों पर कॉल कर सकते हैं:',
+    note: 'नोट:',
+    noteText: 'ये सेवाएं मुफ्त हैं और पूरे भारत में उपलब्ध हैं। जीवन-घातक आपातकाल में तुरंत 112 पर कॉल करें।'
   }
 };
 
@@ -561,7 +616,27 @@ const bnTranslations = {
       imageAlt: 'মহিলাদের স্বাস্থ্য ইলাস্ট্রেশন',
       title: 'মহিলাদের স্বাস্থ্যে আপনার বিশ্বস্ত সঙ্গী',
       subtitle: 'আপনার চক্র ট্র্যাক করুন, বিশেষজ্ঞদের সাথে যোগাযোগ করুন এবং একটি স্বাস্থ্যকর আপনার জন্য সংস্থান অ্যাক্সেস করুন।',
-      cta: 'শুরু করুন'
+      cta: 'শুরু করুন',
+      foundationName: 'সখি কেয়ার ফাউন্ডেশন',
+      empoweringWomen: 'মহিলাদের ক্ষমতায়ন',
+      through: 'মাধ্যমে',
+      healthEducation: 'স্বাস্থ্য, শিক্ষা',
+      andDignity: 'এবং মর্যাদা',
+      usingAI: 'এআই ব্যবহার করে',
+      and: 'এবং',
+      communityCare: 'সম্প্রদায়িক যত্ন',
+      forImpact: 'জন্য',
+      lastingImpact: 'দীর্ঘস্থায়ী প্রভাব'
+    },
+    about: {
+      title: 'সখি কেয়ার ফাউন্ডেশন সম্পর্কে',
+      ourVision: 'আমাদের দৃষ্টিভঙ্গি',
+      visionText1: 'একটি অন্তর্ভুক্তিমূলক, তথ্যবহুল এবং ক্ষমতায়িত সমাজ তৈরি করা যেখানে প্রতিটি মহিলা তার অবস্থান, পটভূমি বা শিক্ষার স্তর নির্বিশেষে',
+      visionText2: 'ব্যক্তিগতকৃত স্বাস্থ্যসেবা, শিক্ষা এবং সহায়তার অ্যাক্সেস রয়েছে।',
+      ourMission: 'আমাদের মিশন',
+      missionText1: 'প্রতিটি মহিলাকে অ্যাক্সেসযোগ্য, ব্যক্তিগতকৃত স্বাস্থ্যসেবা এবং শিক্ষার মাধ্যমে ক্ষমতায়ন করা',
+      missionText2: 'এআই চালিত সরঞ্জাম, বিশ্বস্ত চিকিৎসা সহায়তা এবং একটি নিরাপদ ডিজিটাল সম্প্রদায়',
+      missionText3: 'সে যেখানেই থাকুক না কেন।'
     },
     features: {
       title: 'আমাদের বৈশিষ্ট্য',
@@ -826,12 +901,84 @@ const teTranslations = {
   }
 };
 
+// Marathi translations
+const mrTranslations = {
+  navbar: {
+    doctors: 'डॉक्टर',
+    education: 'शिक्षण',
+    library: 'पुस्तकालय',
+    community: 'समुदाय',
+    contact: 'संपर्क',
+    signIn: 'साइन इन',
+    signUp: 'साइन अप',
+    profile: 'माझे प्रोफाइल',
+    dashboard: 'डॅशबोर्ड',
+    logout: 'लॉगआउट',
+    healthTracker: 'आरोग्य ट्रॅकर',
+    healthGames: 'आरोग्य खेळ',
+    shop: 'दुकान',
+    yojanas: 'सरकारी योजना',
+    askSakhii: 'सखीला विचारा',
+    sos: 'एसओएस'
+  },
+  home: {
+    hero: {
+      mainHeading: 'महिला आरोग्य आणि शिक्षणाचे सक्षमीकरण',
+      subHeading: 'प्रजनन आरोग्य, कल्याण शिक्षण आणि तज्ञ वैद्यकीय मार्गदर्शनासाठी तुमचा विश्वसनीय साथीदार.',
+      exploreCta: 'सखी एक्सप्लोर करा',
+      findDoctorCta: 'डॉक्टर शोधा',
+      imageAlt: 'महिला आरोग्य चित्रण',
+      title: 'महिला आरोग्यात तुमचा विश्वसनीय भागीदार',
+      subtitle: 'तुमचे चक्र ट्रॅक करा, तज्ञांशी कनेक्ट करा आणि तुमच्यासाठी निरोगी जीवनासाठी संसाधने अॅक्सेस करा.',
+      cta: 'सुरू करा',
+      foundationName: 'सखी केअर फाऊंडेशन',
+      empoweringWomen: 'महिलांचे सक्षमीकरण',
+      through: 'द्वारे',
+      healthEducation: 'आरोग्य, शिक्षण',
+      andDignity: 'आणि सन्मान',
+      usingAI: 'एआय वापरून',
+      and: 'आणि',
+      communityCare: 'सामुदायिक काळजी',
+      forImpact: 'साठी',
+      lastingImpact: 'चिरस्थायी प्रभाव'
+    },
+    about: {
+      title: 'सखी केअर फाऊंडेशन बद्दल',
+      ourVision: 'आमची दृष्टी',
+      visionText1: 'एक समावेशक, माहितीपूर्ण आणि सशक्त समाज तयार करणे जिथे प्रत्येक महिलेला तिच्या स्थान, पार्श्वभूमी किंवा शिक्षणाच्या पातळीची परवा न करता',
+      visionText2: 'वैयक्तिकृत आरोग्यसेवा, शिक्षण आणि समर्थनाचा प्रवेश आहे.',
+      ourMission: 'आमचे ध्येय',
+      missionText1: 'प्रत्येक महिलेला सुलभ, वैयक्तिकृत आरोग्यसेवा आणि शिक्षणाद्वारे सक्षम करणे',
+      missionText2: 'एआय चालित साधने, विश्वसनीय वैद्यकीय समर्थन आणि सुरक्षित डिजिटल समुदाय',
+      missionText3: 'ती कुठेही राहत असली तरी.'
+    }
+  },
+  common: {
+    image: 'प्रतिमा'
+  },
+  languages: {
+    language: 'भाषा',
+    english: 'इंग्रजी',
+    hindi: 'हिंदी',
+    bengali: 'बंगाली',
+    tamil: 'तमिळ',
+    telugu: 'तेलुगू',
+    marathi: 'मराठी',
+    gujarati: 'गुजराती',
+    kannada: 'कन्नड',
+    malayalam: 'मल्याळम',
+    punjabi: 'पंजाबी',
+    odia: 'ओडिया'
+  }
+};
+
 const resources = {
   en: { translation: enTranslations },
   hi: { translation: hiTranslations },
   bn: { translation: bnTranslations },
   ta: { translation: taTranslations },
-  te: { translation: teTranslations }
+  te: { translation: teTranslations },
+  mr: { translation: mrTranslations }
 };
 
 i18n

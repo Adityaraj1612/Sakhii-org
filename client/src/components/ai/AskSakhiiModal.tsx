@@ -54,6 +54,22 @@ const AskSakhiiModal: React.FC<AskSakhiiModalProps> = ({ isOpen, onClose }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Stop speaking when modal is closed
+  useEffect(() => {
+    if (!isOpen) {
+      // Stop any ongoing speech
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+      }
+      // Stop any ongoing recording
+      if (isRecording && recognitionRef.current) {
+        recognitionRef.current.stop();
+        setIsRecording(false);
+      }
+    }
+  }, [isOpen, isRecording]);
+
   // Initialize speech recognition
   useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {

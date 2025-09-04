@@ -29,6 +29,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ variant = 'default'
       await i18n.changeLanguage(languageCode);
       localStorage.setItem('language', languageCode);
       
+      // Force re-render by updating document language
+      document.documentElement.lang = languageCode;
+      
       // Show success notification
       setTimeout(() => {
         const event = new CustomEvent('showLanguageChangeToast', {
@@ -46,13 +49,18 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ variant = 'default'
   
   if (variant === 'navbar') {
     return (
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <Select
           value={i18n.language}
           onValueChange={changeLanguage}
         >
-          <SelectTrigger className="w-10 h-10 p-0 border-none bg-transparent hover:bg-gray-100/30 flex items-center justify-center rounded-full">
-            <Globe className="h-5 w-5 text-gray-600" />
+          <SelectTrigger className="min-w-[120px] h-10 px-3 border border-white/50 bg-transparent hover:bg-white/10 flex items-center justify-between rounded-lg text-white">
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4" />
+              <span className="text-sm">
+                {languages.find(l => l.code === i18n.language)?.name || 'English'}
+              </span>
+            </div>
           </SelectTrigger>
           <SelectContent>
             {languages.map(lang => (
