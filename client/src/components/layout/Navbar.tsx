@@ -1,145 +1,641 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FaSearch, FaPhoneAlt } from "react-icons/fa";
+import { Link, useLocation } from "wouter";
+import { useState } from "react";
+import { Menu, X, Calendar, Heart, GamepadIcon, Brain, MessageCircle, Building2, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import AskSakhiiModal from "../ai/AskSakhiiModal";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
+import Logo from "@/components/ui/logo";
 import LanguageSelector from "@/components/ui/language-selector";
+import AskSakhiiModal from "../ai/AskSakhiiModal";
+import { useAuth } from "@/contexts/AuthContext";
+import TopBar from './Topbar'
 
-const TopBar: React.FC = () => {
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAskSakhiiOpen, setIsAskSakhiiOpen] = useState(false);
-  const [isSOSOpen, setIsSOSOpen] = useState(false);
+  const [location] = useLocation();
   const { t } = useTranslation();
+  const { user, logout } = useAuth();
 
-  const emergencyHelplines = [
-    {
-      name: "National Emergency Helpline",
-      number: "112",
-      description: "General emergency services - Police, Fire, Medical",
-      available: "24/7"
-    },
-    {
-      name: "Women Helpline",
-      number: "1091",
-      description: "National helpline for women in distress",
-      available: "24/7"
-    },
-    {
-      name: "Medical Emergency",
-      number: "108",
-      description: "Free ambulance and medical emergency services",
-      available: "24/7"
-    },
-    {
-      name: "Domestic Violence Helpline",
-      number: "181",
-      description: "Support for domestic violence victims",
-      available: "24/7"
-    },
-    {
-      name: "Mental Health Helpline",
-      number: "9152987821",
-      description: "iCALL - Psychosocial helpline",
-      available: "Mon-Sat 8AM-10PM"
-    },
-    {
-      name: "Poison Control",
-      number: "1800-11-4098",
-      description: "All India Institute of Medical Sciences poison control",
-      available: "24/7"
-    }
-  ];
-
-  const callHelpline = (number: string) => {
-    window.open(`tel:${number}`, '_self');
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <div className="w-full bg-[#CA3561] shadow-md px-4 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 max-w-screen-2xl mx-auto">
-      
-      {/* Search Bar */}
-      <div className="flex items-center border border-gray-300 rounded-full px-3 py-2 w-full sm:max-w-lg">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="outline-none flex-1 text-sm bg-[#CA3561] text-white placeholder-white"
-        />
-        <FaSearch className="text-white" />
-      </div>
+    <>
 
-      {/* Buttons */}
-      <div className="flex items-center gap-3 sm:gap-6">
-        <Button
-          onClick={() => setIsAskSakhiiOpen(true)}
-          variant="secondary"
-          className="px-6 py-2 rounded-lg bg-[#BC0707] text-white w-full sm:w-auto"
-        >
-          {t("navbar.askSakhii", "Ask Sakhii")}
-        </Button>
+    <header className="bg-white shadow-lg sticky top-0 z-50 max-w-screen-2xl mx-auto">
+    <TopBar/>
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Logo */}
+        <Link href="/">
+          <div className="flex items-center cursor-pointer mx-2">
+            <Logo size="sm" />
+          </div>
+        </Link>
 
-        <div className="flex items-center">
-          <LanguageSelector variant="navbar" />
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center space-x-6">
+          <Link href="/doctors" className={`${location === '/doctors' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.doctors')}
+          </Link>
+          <Link href="/education" className={`${location === '/education' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.education')}
+          </Link>
+          <Link href="/library" className={`${location === '/library' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.library')}
+          </Link>
+          <Link href="/community" className={`${location === '/community' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.community')}
+          </Link>
+          <Link href="/contact" className={`${location === '/contact' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.contact')}
+          </Link>
+          <Link href="/tracker" className={`${location === '/tracker' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+            <Heart className="mr-1 h-4 w-4 text-rose-500" /> {t('navbar.healthTracker')}
+          </Link>
+          <Link href="/games" className={`${location === '/games' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+            <Brain className="mr-1 h-4 w-4 text-purple-500" /> {t('navbar.healthGames')}
+          </Link>
+          <Link href="/shop" className={`${location === '/shop' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+            {t('navbar.shop12', 'Shop')}
+          </Link>
+          <Link href="/yojanas" className={`${location === '/yojanas' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+            <Building2 className="mr-1 h-4 w-4 text-blue-500" />
+            {t('navbar.yojanas', 'Government Schemes')}
+          </Link>
+        </nav>
+
+        {/* Right Buttons */}
+        <div className="hidden md:flex items-center space-x-3">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.profilePicture || ""} alt={user.fullName} />
+                    <AvatarFallback className="bg-pink-100 text-pink-600">
+                      {user.fullName?.charAt(0)?.toUpperCase() || "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuItem className="flex-col items-start">
+                  <div className="font-medium">{user.fullName}</div>
+                  <div className="text-sm text-gray-500">{user.email}</div>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/profile" className="flex items-center w-full">
+                    <User className="mr-2 h-4 w-4" />
+                    Profile
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard" className="flex items-center w-full">
+                    <Heart className="mr-2 h-4 w-4" />
+                    Dashboard
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout} className="text-red-600">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <div className="flex items-center space-x-2">
+              <Link href="/sign-in">
+                <Button variant="default" size="sm" className="bg-rose-600 hover:bg-rose-700 text-white">
+                  {t('navbar.signIn')}
+                </Button>
+              </Link>
+              <Link href="/sign-up">
+                <Button variant="outline" size="sm" className="border-rose-600 text-rose-600 hover:bg-rose-50">
+                  {t('navbar.signUp')}
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
 
-        <Button
-          onClick={() => setIsSOSOpen(true)}
-          className="px-6 py-2 rounded-lg bg-[#BC0707] text-white hover:bg-[#A00606] transition w-full sm:w-auto flex items-center gap-2"
-        >
-          <FaPhoneAlt className="h-4 w-4" />
-          {t("navbar.sos", "SOS")}
-        </Button>
+        {/* Mobile Toggle */}
+        <button className="md:hidden text-neutral-800" onClick={toggleMenu}>
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
       </div>
 
-      {/* Modals */}
-      <AskSakhiiModal
-        isOpen={isAskSakhiiOpen}
-        onClose={() => setIsAskSakhiiOpen(false)}
-      />
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white py-4 px-4 shadow-md">
+          <ul className="space-y-3">
+            <li>
+              <Link 
+                href="/doctors" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.doctors')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/education" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.education')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/library" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'}hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.library')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/community" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.community')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/contact" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'}hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.contact')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/tracker" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                <Heart className="mr-1 h-4 w-4 text-rose-500" /> Health Tracker
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/games" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/shop" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/shop' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+              >
+                {t('navbar.shop', 'Shop')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/yojanas" 
+                onClick={() => setIsMenuOpen(false)}
+                className={`${location === '/yojanas' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold py-1 flex items-center`}
+              >
+                <Building2 className="mr-1 h-4 w-4 text-blue-500" />
+                {t('navbar.yojanas', 'Government Schemes')}
+              </Link>
+            </li>
+
+            {!user && (
+              <>
+                <li className="pt-2 border-t">
+                  <Link 
+                    href="/sign-in" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-primary font-medium block py-1"
+                  >
+                    {t('navbar.signIn')}
+                  </Link>
+                </li>
       
-      {/* SOS Emergency Modal */}
-      <Dialog open={isSOSOpen} onOpenChange={setIsSOSOpen}>
-        <DialogContent className="max-w-md mx-auto">
-          <DialogHeader>
-            <DialogTitle className="text-red-600 flex items-center gap-2">
-              <FaPhoneAlt className="h-5 w-5" />
-              {t("sos.title", "Emergency Helplines")}
-            </DialogTitle>
-          </DialogHeader>
-          
-          <div className="space-y-4 max-h-96 overflow-y-auto">
-            <p className="text-sm text-gray-600">
-              {t("sos.description", "In case of emergency, you can call these helpline numbers for immediate assistance:")}
-            </p>
+                <li>
+                  <Link 
+                    href="/sign-up" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-neutral-600 hover:text-primary block py-1"
+                  >
+                    {t('navbar.signUp')}
+                  </Link>
+                </li>
+              </>
+            )}
             
-            {emergencyHelplines.map((helpline, index) => (
-              <div key={index} className="border rounded-lg p-4 space-y-2">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-semibold text-gray-800">{helpline.name}</h3>
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                    {helpline.available}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-600">{helpline.description}</p>
-                <Button
-                  onClick={() => callHelpline(helpline.number)}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center gap-2"
-                >
-                  <FaPhoneAlt className="h-4 w-4" />
-                  Call {helpline.number}
-                </Button>
+            {user && (
+              <>
+                <li className="pt-2 border-t">
+                  <div className="flex items-center py-2">
+                    <Avatar className="h-8 w-8 mr-3">
+                      <AvatarImage src={user.profilePicture || ""} alt={user.fullName} />
+                      <AvatarFallback className="bg-pink-100 text-pink-600">
+                        {user.fullName?.charAt(0)?.toUpperCase() || "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <div className="font-medium text-sm">{user.fullName}</div>
+                      <div className="text-xs text-gray-500">{user.email}</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <Link 
+                    href="/profile" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-neutral-600 hover:text-primary block py-1"
+                  >
+                    <User className="inline mr-2 h-4 w-4" />
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/dashboard" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-neutral-600 hover:text-primary block py-1"
+                  >
+                    <Heart className="inline mr-2 h-4 w-4" />
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => {
+                      logout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-red-600 hover:text-red-700 block py-1 w-full text-left"
+                  >
+                    <LogOut className="inline mr-2 h-4 w-4" />
+                    Sign Out
+                  </button>
+                </li>
+              </>
+            )}
+            <li className="pt-2">
+              <div className="py-1">
+                <LanguageSelector />
               </div>
-            ))}
+            </li>
             
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-              <p className="text-xs text-yellow-800">
-                <strong>{t("sos.note", "Note:")}</strong> {t("sos.noteText", "These services are free and available across India. In life-threatening emergencies, call 112 immediately.")}
-              </p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
+          </ul>
+        </div>
+      )}
+      
+      {/* Ask Sakhii Modal */}
+      <AskSakhiiModal 
+        isOpen={isAskSakhiiOpen} 
+        onClose={() => setIsAskSakhiiOpen(false)} 
+      />
+    </header>
+    </>
   );
 };
 
-export default TopBar;
+export default Navbar;
+
+// import { Link, useLocation } from "wouter";
+// import { useState } from "react";
+// import { Menu, X, Calendar, Heart, GamepadIcon, Brain, MessageCircle, Building2, User, LogOut } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+// import { useTranslation } from "react-i18next";
+// import Logo from "@/components/ui/logo";
+// import LanguageSelector from "@/components/ui/language-selector";
+// import AskSakhiiModal from "../ai/AskSakhiiModal";
+// import { useAuth } from "@/contexts/AuthContext";
+
+// const Navbar = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [isAskSakhiiOpen, setIsAskSakhiiOpen] = useState(false);
+//   const [location] = useLocation();
+//   const { t } = useTranslation();
+//   const { user, logout } = useAuth();
+
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
+
+//   return (
+//     <header className="bg-white shadow-sm sticky top-0 z-50">
+//       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+//         {/* Logo */}
+//         <Link href="/">
+//           <div className="flex items-center cursor-pointer">
+//             <Logo size="sm" />
+//           </div>
+//         </Link>
+
+//         {/* Navigation Links */}
+//         <nav className="hidden md:flex items-center space-x-6">
+//           <Link href="/doctors" className={`${location === '/doctors' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+//             {t('navbar.doctors')}
+//           </Link>
+//           <Link href="/education" className={`${location === '/education' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+//             {t('navbar.education')}
+//           </Link>
+//           <Link href="/library" className={`${location === '/library' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+//             {t('navbar.library')}
+//           </Link>
+//           <Link href="/community" className={`${location === '/community' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+//             {t('navbar.community')}
+//           </Link>
+//           <Link href="/contact" className={`${location === '/contact' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+//             {t('navbar.contact')}
+//           </Link>
+//           <Link href="/tracker" className={`${location === '/tracker' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+//             <Heart className="mr-1 h-4 w-4 text-rose-500" /> {t('navbar.healthTracker')}
+//           </Link>
+//           <Link href="/games" className={`${location === '/games' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+//             <Brain className="mr-1 h-4 w-4 text-purple-500" /> {t('navbar.healthGames')}
+//           </Link>
+//           <Link href="/shop" className={`${location === '/shop' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold`}>
+//             {t('navbar.shop', 'Shop')}
+//           </Link>
+//           <Link href="/yojanas" className={`${location === '/yojanas' ? 'text-rose-600' : 'text-gray-700'} hover:text-rose-600 font-semibold flex items-center`}>
+//             <Building2 className="mr-1 h-4 w-4 text-blue-500" />
+//             {t('navbar.yojanas', 'Government Schemes')}
+//           </Link>
+//           <Button 
+//             onClick={() => setIsAskSakhiiOpen(true)}
+//             variant="secondary" 
+//             className="bg-rose-500 text-white hover:bg-rose-600 flex items-center"
+//           >
+//             <MessageCircle className="mr-1 h-4 w-4" />
+//             {t('navbar.askSakhii', 'Ask Sakhii')}
+//           </Button>
+//         </nav>
+
+//         {/* Right Buttons */}
+//         <div className="hidden md:flex items-center space-x-3">
+//           <LanguageSelector variant="navbar" />
+
+//           {user ? (
+//             <DropdownMenu>
+//               <DropdownMenuTrigger asChild>
+//                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+//                   <Avatar className="h-8 w-8">
+//                     <AvatarImage src={user.profilePicture || ""} alt={user.fullName} />
+//                     <AvatarFallback className="bg-pink-100 text-pink-600">
+//                       {user.fullName?.charAt(0)?.toUpperCase() || "U"}
+//                     </AvatarFallback>
+//                   </Avatar>
+//                 </Button>
+//               </DropdownMenuTrigger>
+//               <DropdownMenuContent className="w-56" align="end" forceMount>
+//                 <DropdownMenuItem className="flex-col items-start">
+//                   <div className="font-medium">{user.fullName}</div>
+//                   <div className="text-sm text-gray-500">{user.email}</div>
+//                 </DropdownMenuItem>
+//                 <DropdownMenuSeparator />
+//                 <DropdownMenuItem asChild>
+//                   <Link href="/profile" className="flex items-center w-full">
+//                     <User className="mr-2 h-4 w-4" />
+//                     Profile
+//                   </Link>
+//                 </DropdownMenuItem>
+//                 <DropdownMenuItem asChild>
+//                   <Link href="/dashboard" className="flex items-center w-full">
+//                     <Heart className="mr-2 h-4 w-4" />
+//                     Dashboard
+//                   </Link>
+//                 </DropdownMenuItem>
+//                 <DropdownMenuSeparator />
+//                 <DropdownMenuItem onClick={logout} className="text-red-600">
+//                   <LogOut className="mr-2 h-4 w-4" />
+//                   Sign Out
+//                 </DropdownMenuItem>
+//               </DropdownMenuContent>
+//             </DropdownMenu>
+//           ) : (
+//             <>
+//               <Link href="/sign-in">
+//                 <Button variant="default" size="sm">{t('navbar.signIn')}</Button>
+//               </Link>
+//               <Link href="/sign-up">
+//                 <Button variant="outline" size="sm">{t('navbar.signUp')}</Button>
+//               </Link>
+//             </>
+//           )}
+//         </div>
+
+//         {/* Mobile Toggle */}
+//         <button className="md:hidden text-neutral-800" onClick={toggleMenu}>
+//           {isMenuOpen ? <X /> : <Menu />}
+//         </button>
+//       </div>
+
+
+//       {/* Mobile menu */}
+//       {isMenuOpen && (
+//         <div className="md:hidden bg-white py-4 px-4 shadow-md">
+//           <ul className="space-y-3">
+//             <li>
+//               <Link 
+//                 href="/doctors" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/doctors' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+//               >
+//                 {t('navbar.doctors')}
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/education" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/education' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+//               >
+//                 {t('navbar.education')}
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/library" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/library' ? 'text-primary' : 'text-neutral-600'}hover:text-primary font-semibold block py-1`}
+//               >
+//                 {t('navbar.library')}
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/community" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/community' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+//               >
+//                 {t('navbar.community')}
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/contact" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/contact' ? 'text-primary' : 'text-neutral-600'}hover:text-primary font-semibold block py-1`}
+//               >
+//                 {t('navbar.contact')}
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/tracker" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/tracker' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+//               >
+//                 <Heart className="mr-1 h-4 w-4 text-rose-500" /> Health Tracker
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/games" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/games' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+//               >
+//                 <Brain className="mr-1 h-4 w-4 text-purple-500" /> Health Games
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/shop" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/shop' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold block py-1`}
+//               >
+//                 {t('navbar.shop', 'Shop')}
+//               </Link>
+//             </li>
+//             <li>
+//               <Link 
+//                 href="/yojanas" 
+//                 onClick={() => setIsMenuOpen(false)}
+//                 className={`${location === '/yojanas' ? 'text-primary' : 'text-neutral-600'} hover:text-primary font-semibold py-1 flex items-center`}
+//               >
+//                 <Building2 className="mr-1 h-4 w-4 text-blue-500" />
+//                 {t('navbar.yojanas', 'Government Schemes')}
+//               </Link>
+//             </li>
+//              <li>
+//               <Button 
+//                 onClick={() => {
+//                   setIsAskSakhiiOpen(true);
+//                   setIsMenuOpen(false);
+//                 }}
+//                 variant="secondary" 
+//                 className="w-full mt-2 bg-rose-500 text-white hover:bg-rose-600 font-semibold flex items-center justify-center"
+//               >
+//                 <MessageCircle className="mr-1 h-4 w-4" />
+//                 Ask Sakhii
+//               </Button>
+//             </li>
+
+//             {!user && (
+//               <>
+//                 <li className="pt-2 border-t">
+//                   <Link 
+//                     href="/sign-in" 
+//                     onClick={() => setIsMenuOpen(false)}
+//                     className="text-primary font-medium block py-1"
+//                   >
+//                     {t('navbar.signIn')}
+//                   </Link>
+//                 </li>
+      
+//                 <li>
+//                   <Link 
+//                     href="/sign-up" 
+//                     onClick={() => setIsMenuOpen(false)}
+//                     className="text-neutral-600 hover:text-primary block py-1"
+//                   >
+//                     {t('navbar.signUp')}
+//                   </Link>
+//                 </li>
+//               </>
+//             )}
+            
+//             {user && (
+//               <>
+//                 <li className="pt-2 border-t">
+//                   <div className="flex items-center py-2">
+//                     <Avatar className="h-8 w-8 mr-3">
+//                       <AvatarImage src={user.profilePicture || ""} alt={user.fullName} />
+//                       <AvatarFallback className="bg-pink-100 text-pink-600">
+//                         {user.fullName?.charAt(0)?.toUpperCase() || "U"}
+//                       </AvatarFallback>
+//                     </Avatar>
+//                     <div>
+//                       <div className="font-medium text-sm">{user.fullName}</div>
+//                       <div className="text-xs text-gray-500">{user.email}</div>
+//                     </div>
+//                   </div>
+//                 </li>
+//                 <li>
+//                   <Link 
+//                     href="/profile" 
+//                     onClick={() => setIsMenuOpen(false)}
+//                     className="text-neutral-600 hover:text-primary block py-1"
+//                   >
+//                     <User className="inline mr-2 h-4 w-4" />
+//                     Profile
+//                   </Link>
+//                 </li>
+//                 <li>
+//                   <Link 
+//                     href="/dashboard" 
+//                     onClick={() => setIsMenuOpen(false)}
+//                     className="text-neutral-600 hover:text-primary block py-1"
+//                   >
+//                     <Heart className="inline mr-2 h-4 w-4" />
+//                     Dashboard
+//                   </Link>
+//                 </li>
+//                 <li>
+//                   <button 
+//                     onClick={() => {
+//                       logout();
+//                       setIsMenuOpen(false);
+//                     }}
+//                     className="text-red-600 hover:text-red-700 block py-1 w-full text-left"
+//                   >
+//                     <LogOut className="inline mr-2 h-4 w-4" />
+//                     Sign Out
+//                   </button>
+//                 </li>
+//               </>
+//             )}
+//             <li className="pt-2">
+//               <div className="py-1">
+//                 <LanguageSelector />
+//               </div>
+//             </li>
+            
+//           </ul>
+//         </div>
+//       )}
+      
+//       {/* Ask Sakhii Modal */}
+//       <AskSakhiiModal 
+//         isOpen={isAskSakhiiOpen} 
+//         onClose={() => setIsAskSakhiiOpen(false)} 
+//       />
+//     </header>
+//   );
+// };
+
+// export default Navbar;
